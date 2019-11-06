@@ -22,15 +22,20 @@ let renderMeasureSites = (measureSites) => {
     // create <p> for  flow content
     let siteFlowParagraph = document.createElement('p');
     let measureParameter = getMeasureParameter(measureSite.MeasureParameters, 'Tapping' || 'Flow');
-    siteFlowParagraph.innerText = measureParameter.Description + " " + measureParameter.CurrentValue;
+    siteFlowParagraph.innerText = measureParameter;
     siteCard.appendChild(siteFlowParagraph);
   });
 }
 
 let getMeasureParameter = (measureParameters, code) => {
-  return measureParameters.filter(measureParameter => measureParameter.Code == code)
+  let result = measureParameters.filter(measureParameter => measureParameter.Code == code);
+  let parameter = result[0];
+  if (parameter == undefined) {
+    return "inget värde";
+  } else {
+    return parameter.CurrentValue;
+  }
 }
-
 // Get input information from form
 
 // Max value (to) should be yesterday
