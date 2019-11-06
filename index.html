@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <title>RiverService</title>
 </head>
@@ -14,12 +15,19 @@
     <h1>Riverservice</h1>
     <form class="searchMeasureSites">
       <fieldset>
-        <legend>Sökparametrar:</legend>
-          <select name="measureSites" id="measureSites">
-            <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
-          </select>
+      <legend>Sökparametrar:</legend>
+        <span>Mätplats</span>
+        <select name="measureSites" id="measureSites">
+          <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
+        </select>
+        <span>Startdatum:</span>
         <input type="date" name="fromDate" id="fromDate">
+        <span>Slutdatum:</span>
         <input type="date" name="toDate" id="toDate">
+        <fieldset class="checkboxes">
+          <legend>Mätvärden</legend>
+          <input type="checkbox" name="flow" id="flow">
+        </fieldset>
       </fieldset>
     </form>
     <main>
