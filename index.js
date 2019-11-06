@@ -46,12 +46,10 @@ let toDate;
 
 function getFromDate(event) {
   fromDate = event.target.value;
-  console.log(fromDate);
   event.preventDefault();
 }
 function getToDate(event) {
   toDate = event.target.value;
-  console.log(toDate);
   event.preventDefault();
 }
 // Max value (to) should be yesterday
