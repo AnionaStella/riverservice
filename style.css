@@ -29,6 +29,7 @@ header h1 {
 }
 .card p {
   color: #031926;
+  width: 20%;
 }
 .siteName {
   width: 30%;
