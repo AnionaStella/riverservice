@@ -30,3 +30,8 @@ let renderMeasureSites = (measureSites) => {
 let getMeasureParameter = (measureParameters, code) => {
   return measureParameters.filter(measureParameter => measureParameter.Code == code)
 }
+
+// Get input information from form
+
+// Max value (to) should be yesterday
+// Default from value is one month ago
