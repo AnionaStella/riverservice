@@ -1,23 +1,24 @@
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('http://data.goteborg.se/RiverService/v1.1/MeasureSites/b9098f14-4d94-49bd-8c7b-2c15ab9c370e?format=json')
-    .then(async response => {
-      let json = await response.json();
-      console.log(json);
-      renderMeasureSites(json);
-      renderformName(json);
-      // Get dates entered in search field
-      document.getElementById('fromDate').addEventListener('input', getFromDate);
-      document.getElementById('toDate').addEventListener('input', getToDate);
-    })
-})
-
+document.addEventListener("DOMContentLoaded", () => {
+  fetch(
+    "http://data.goteborg.se/RiverService/v1.1/MeasureSites/b9098f14-4d94-49bd-8c7b-2c15ab9c370e?format=json"
+  ).then(async response => {
+    let json = await response.json();
+    console.log(json);
+    renderMeasureSites(json);
+    renderformName(json);
+    // Get dates entered in search field
+    document.getElementById("fromDate").addEventListener("input", getFromDate);
+    document.getElementById("toDate").addEventListener("input", getToDate);
+  });
+});
 
 let renderMeasureSites = measureSites => {
   measureSites.forEach(measureSite => {
     //create a cardDiv
+    let container = document.querySelector(".container");
     let siteCard = document.createElement("div");
     siteCard.className = "card";
-    document.body.appendChild(siteCard);
+    container.appendChild(siteCard);
     // create <p> and add name from array
     let siteNameParagraph = document.createElement("p");
     siteNameParagraph.className = "siteName";
@@ -64,7 +65,6 @@ function renderformName(measureSites) {
   });
 }
 
-
 // api-kall, idé för hämtning
 function getMeasureSiteInfo() {
   fetch(
@@ -76,10 +76,9 @@ function getMeasureSiteInfo() {
   });
 }
 
-let renderGetSite = function (info) {
+let renderGetSite = function(info) {
   // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
 };
-
 
 function getFromDate(event) {
   fromDate = event.target.value;
