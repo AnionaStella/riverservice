@@ -17,10 +17,6 @@ header h1 {
   color: #f4e9cd;
 }
 
-form {
-  display: none;
-}
-
 .card {
   margin: 0 auto;
   background-color: #9dbebb;
@@ -63,9 +59,6 @@ form {
   display: none;
 }
 
-
-
-
 .modal {
   position: fixed;
   left: 0;
@@ -94,15 +87,20 @@ form {
   visibility: visible;
 }
 
-
-
-
-
-
 /* MEDIA QUERY */
 
 @media screen and (min-width: 768px) {
   .searchMeasureSites {
     display: block;
   }
-
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 1rem;
+    width: 100%;
+  }
+  .card {
+    height: 100px;
+  }
+}

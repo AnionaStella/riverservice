@@ -23,10 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
 let renderMeasureSites = measureSites => {
   measureSites.forEach((measureSite, index) => {
     //create a cardDiv
+    let container = document.querySelector(".container");
     let siteCard = document.createElement("div");
     siteCard.className = "card";
     siteCard.id = 's' + index;
-    document.body.appendChild(siteCard);
+    container.appendChild(siteCard);
+    
+    
     // create <p> and add name from array
     let siteNameParagraph = document.createElement("p");
     siteNameParagraph.className = "siteName";
@@ -74,7 +77,6 @@ function renderformName(measureSites) {
   });
 }
 
-
 // api-kall, idé för hämtning
 function getMeasureSiteInfo() {
   fetch(
@@ -86,10 +88,9 @@ function getMeasureSiteInfo() {
   });
 }
 
-let renderGetSite = function (info) {
+let renderGetSite = function(info) {
   // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
 };
-
 
 function getFromDate(event) {
   fromDate = event.target.value;
@@ -102,6 +103,8 @@ function getToDate(event) {
 }
 // Max value (to) should be yesterday
 // Default from value is one month ago
+<<<<<<< HEAD
+=======
 
 
 // Expand measure site when clicked
@@ -159,3 +162,4 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
+>>>>>>> 36764346addaa0b7645ee732cc3593837e303a8d
