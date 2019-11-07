@@ -87,6 +87,10 @@ header h1 {
   visibility: visible;
 }
 
+.desktop {
+  display: none;
+}
+
 /* MEDIA QUERY */
 
 @media screen and (min-width: 768px) {
@@ -102,5 +106,11 @@ header h1 {
   }
   .card {
     height: 100px;
+  }
+  .desktop {
+    display: inline;
+  }
+  .mobile {
+    display: none;
   }
 }

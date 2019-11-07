@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('fromDate').addEventListener('input', getFromDate);
         document.getElementById('toDate').addEventListener('input', getToDate);
       
-      document.addEventListener('click', expandSite); // Show modal with more site info on click
+      document.querySelector('.container').addEventListener('click', expandSite); // Show modal with more site info on click
       window.addEventListener('submit', expandSite); // Search and show results in modal
       window.addEventListener('click', windowOnClick); // Close modal when user clicks outside of modal
       })
@@ -103,17 +103,21 @@ function getToDate(event) {
 }
 // Max value (to) should be yesterday
 // Default from value is one month ago
-<<<<<<< HEAD
-=======
 
 
 // Expand measure site when clicked
-function expandSite () {
-  if (event.target.nodeName === "DIV") {
-    let sId = event.target.parentNode.parentNode.id;
+function expandSite (event) {
+  if (event.target.className === 'card') {
+    let sId = event.target.id;
     let id = parseInt(sId.replace('s', ''));
-    let site = getSite(id);
-    createSiteModal(site);            
+    // let site = getSite(id);
+    createSiteModal();            
+  };
+  if (event.target.nodeName === 'P') {
+    let sId = event.target.parentElement.id;
+    let id = parseInt(sId.replace('s', ''));
+    // let site = getSite(id);
+    createSiteModal();            
   };
 }
 
@@ -124,27 +128,27 @@ let modalContent = document.querySelector('.modalContent');
 
 function createSiteModal(site) {
   modalContent.innerHTML = `
-  <form class="searchMeasureSites">
+  <form class="searchMeasureSitesModal">
   <fieldset>
     <legend>Sökparametrar:</legend>
-    <label id="measureSites">Mätplats</label>
-    <select name="measureSites" id="selectId">
-      <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
+    <label id="measureSitesModal">Mätplats</label>
+    <select name="measureSites" id="selectIdModal">
+
     </select>
-    <label for="fromDate">Startdatum:</label>
-    <input type="date" name="fromDate" id="fromDate" />
-    <label for="toDate">Slutdatum:</label>
-    <input type="date" name="toDate" id="toDate" />
-    <fieldset class="checkboxes">
+    <label for="fromDateModal">Startdatum:</label>
+    <input type="date" name="fromDate" id="fromDateModal" />
+    <label for="toDateModal">Slutdatum:</label>
+    <input type="date" name="toDate" id="toDateModal" />
+    <fieldset class="checkboxesModal">
       <legend>Mätvärden:</legend>
-      <label for="flow">Flöde/Tappning</label>
-      <input type="checkbox" name="flow" id="flow" />
-      <label for="level">Nivå</label>
-      <input type="checkbox" name="level" id="level" />
-      <label for="levelDownstream">Nivå nedströms</label>
-      <input type="checkbox" name="levelDownstream" id="levelDownstream"/>
-      <label for="rainFall">Nederbörd</label>
-      <input type="checkbox" name="rainFall" id="rainFall" />
+      <label for="flowModal">Flöde/Tappning</label>
+      <input type="checkbox" name="Flow" id="flowModal" />
+      <label for="levelModal">Nivå</label>
+      <input type="checkbox" name="Level" id="levelModal" />
+      <label for="levelDownstreamModal">Nivå nedströms</label>
+      <input type="checkbox" name="LevelDownstream" id="levelDownstreamModal"/>
+      <label for="rainFallModal">Nederbörd</label>
+      <input type="checkbox" name="RainFall" id="rainFallModal" />
     </fieldset>
     <button type="submit">Visa värden</button>
   </fieldset>
@@ -162,4 +166,3 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
->>>>>>> 36764346addaa0b7645ee732cc3593837e303a8d
