@@ -1,22 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
   try {
-    fetch(
-      "http://data.goteborg.se/RiverService/v1.1/MeasureSites/b9098f14-4d94-49bd-8c7b-2c15ab9c370e?format=json"
-    ).then(async response => {
-      let json = await response.json();
-      console.log(json);
-      renderMeasureSites(json);
-      renderformName(json);
-      // Get dates entered in search field
-      document
-        .getElementById("fromDate")
-        .addEventListener("input", getFromDate);
-      document.getElementById("toDate").addEventListener("input", getToDate);
 
-      document.addEventListener("click", expandSite); // Show modal with more site info on click
-      window.addEventListener("submit", expandSite); // Search and show results in modal
-      window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
-    });
+    fetch('http://data.goteborg.se/RiverService/v1.1/MeasureSites/b9098f14-4d94-49bd-8c7b-2c15ab9c370e?format=json')
+      .then(async response => {
+        let json = await response.json();
+        console.log(json);
+        renderMeasureSites(json);
+        renderformName(json);
+        // Get dates entered in search field
+        document.getElementById('fromDate').addEventListener('input', getFromDate);
+        document.getElementById('toDate').addEventListener('input', getToDate);
+
+        document.addEventListener('click', expandSite); // Show modal with more site info on click
+        window.addEventListener('submit', expandSite); // Search and show results in modal
+        window.addEventListener('click', windowOnClick); // Close modal when user clicks outside of modal
+      })
+
   } catch (error) {
     console.error(error);
   }
@@ -89,7 +88,7 @@ function getMeasureSiteInfo() {
   });
 }
 
-let renderGetSite = function(info) {
+let renderGetSite = function (info) {
   // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
 };
 
@@ -112,7 +111,11 @@ function expandSite() {
     let id = parseInt(sId.replace("s", ""));
     let site = getSite(id);
     createSiteModal(site);
+
+ 
+
   }
+
 }
 
 // Creating the modals
@@ -135,13 +138,13 @@ function createSiteModal(site) {
     <fieldset class="checkboxes">
       <legend>Mätvärden:</legend>
       <label for="flow">Flöde/Tappning</label>
-      <input type="checkbox" name="flow" id="flow" />
+      <input type="checkbox" name="Tapping" id="flow" />
       <label for="level">Nivå</label>
-      <input type="checkbox" name="level" id="level" />
+      <input type="checkbox" name="Level" id="level" />
       <label for="levelDownstream">Nivå nedströms</label>
-      <input type="checkbox" name="levelDownstream" id="levelDownstream"/>
+      <input type="checkbox" name="LevelDownstream" id="levelDownstream"/>
       <label for="rainFall">Nederbörd</label>
-      <input type="checkbox" name="rainFall" id="rainFall" />
+      <input type="checkbox" name="RainFall" id="rainFall" />
     </fieldset>
     <button type="submit">Visa värden</button>
   </fieldset>
@@ -159,3 +162,16 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
+
+
+//Start-idé för hur man ska hitta vilka checkboxes som ska synas
+function disableCheckbox(measureSites) {
+  measureSites.forEach(function (measureSite) {
+    if (measureSite.MeasureParameter.Code != checkbox.name) {
+      document.getElementsByName('checkbox').disabled = true;
+    } else {
+      document.getElementById('checkbox').disabled = false;
+    }
+  })
+}
+
