@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get dates entered in search field
         document.getElementById('fromDate').addEventListener('input', getFromDate);
         document.getElementById('toDate').addEventListener('input', getToDate);
-      
-      document.addEventListener('click', expandSite); // Show modal with more site info on click
-      window.addEventListener('submit', expandSite); // Search and show results in modal
-      window.addEventListener('click', windowOnClick); // Close modal when user clicks outside of modal
+
+        document.addEventListener('click', expandSite); // Show modal with more site info on click
+        window.addEventListener('submit', expandSite); // Search and show results in modal
+        window.addEventListener('click', windowOnClick); // Close modal when user clicks outside of modal
       })
   } catch (error) {
     console.error(error);
@@ -28,8 +28,6 @@ let renderMeasureSites = measureSites => {
     siteCard.className = "card";
     siteCard.id = 's' + index;
     container.appendChild(siteCard);
-    
-    
     // create <p> and add name from array
     let siteNameParagraph = document.createElement("p");
     siteNameParagraph.className = "siteName";
@@ -88,7 +86,7 @@ function getMeasureSiteInfo() {
   });
 }
 
-let renderGetSite = function(info) {
+let renderGetSite = function (info) {
   // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
 };
 
@@ -103,17 +101,14 @@ function getToDate(event) {
 }
 // Max value (to) should be yesterday
 // Default from value is one month ago
-<<<<<<< HEAD
-=======
-
 
 // Expand measure site when clicked
-function expandSite () {
+function expandSite() {
   if (event.target.nodeName === "DIV") {
     let sId = event.target.parentNode.parentNode.id;
     let id = parseInt(sId.replace('s', ''));
     let site = getSite(id);
-    createSiteModal(site);            
+    createSiteModal(site);
   };
 }
 
@@ -138,13 +133,13 @@ function createSiteModal(site) {
     <fieldset class="checkboxes">
       <legend>Mätvärden:</legend>
       <label for="flow">Flöde/Tappning</label>
-      <input type="checkbox" name="flow" id="flow" />
+      <input type="checkbox" name="Tapping" id="flow" />
       <label for="level">Nivå</label>
-      <input type="checkbox" name="level" id="level" />
+      <input type="checkbox" name="Level" id="level" />
       <label for="levelDownstream">Nivå nedströms</label>
-      <input type="checkbox" name="levelDownstream" id="levelDownstream"/>
+      <input type="checkbox" name="LevelDownstream" id="levelDownstream"/>
       <label for="rainFall">Nederbörd</label>
-      <input type="checkbox" name="rainFall" id="rainFall" />
+      <input type="checkbox" name="RainFall" id="rainFall" />
     </fieldset>
     <button type="submit">Visa värden</button>
   </fieldset>
@@ -162,4 +157,14 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
->>>>>>> 36764346addaa0b7645ee732cc3593837e303a8d
+
+//Start-idé för hur man ska hitta vilka checkboxes som ska synas
+function disableCheckbox(measureSites) {
+  measureSites.forEach(function (measureSite) {
+    if (measureSite.MeasureParameter.Code != checkbox.name) {
+      document.getElementsByName('checkbox').disabled = true;
+    } else {
+      document.getElementById('checkbox').disabled = false;
+    }
+  })
+}
