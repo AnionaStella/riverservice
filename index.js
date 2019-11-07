@@ -4,13 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
       let json = await response.json();
       console.log(json);
       renderMeasureSites(json);
+      renderformName(json);
       // Get dates entered in search field
       document.getElementById('fromDate').addEventListener('input', getFromDate);
       document.getElementById('toDate').addEventListener('input', getToDate);
     })
 })
-
-
 
 
 let renderMeasureSites = measureSites => {
@@ -52,6 +51,7 @@ let getMeasureParameter = (measureParameters, code) => {
 let fromDate;
 let toDate;
 
+// Sites:
 function renderformName(measureSites) {
   let select = document.getElementById("selectId");
 
@@ -63,7 +63,6 @@ function renderformName(measureSites) {
     select.appendChild(option);
   });
 }
-renderformName();
 
 
 // api-kall, idé för hämtning
