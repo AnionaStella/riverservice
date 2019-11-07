@@ -8,15 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
       // Get dates entered in search field
       document.getElementById('fromDate').addEventListener('input', getFromDate);
       document.getElementById('toDate').addEventListener('input', getToDate);
+
+
+
+      document.addEventListener('click', expandSite); // Show modal with more site info on click
+      window.addEventListener('submit', expandSite); // Search and show results in modal
+      window.addEventListener('click', windowOnClick); // Close modal when user clicks outside of modal
     })
 })
 
 
 let renderMeasureSites = measureSites => {
-  measureSites.forEach(measureSite => {
+  measureSites.forEach((measureSite, index) => {
     //create a cardDiv
     let siteCard = document.createElement("div");
     siteCard.className = "card";
+    siteCard.id = 's' + index;
     document.body.appendChild(siteCard);
     // create <p> and add name from array
     let siteNameParagraph = document.createElement("p");
@@ -92,3 +99,60 @@ function getToDate(event) {
 }
 // Max value (to) should be yesterday
 // Default from value is one month ago
+
+
+// Expand measure site when clicked
+function expandSite () {
+  if (event.target.nodeName === "DIV") {
+    let sId = event.target.parentNode.parentNode.id;
+    let id = parseInt(sId.replace('s', ''));
+    let site = getSite(id);
+    createSiteModal(site);            
+  };
+}
+
+// Creating the modals
+let modal = document.querySelector('.modal');
+let modalContent = document.querySelector('.modalContent');
+
+
+function createSiteModal(site) {
+  modalContent.innerHTML = `
+  <form class="searchMeasureSites">
+  <fieldset>
+    <legend>Sökparametrar:</legend>
+    <label id="measureSites">Mätplats</label>
+    <select name="measureSites" id="selectId">
+      <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
+    </select>
+    <label for="fromDate">Startdatum:</label>
+    <input type="date" name="fromDate" id="fromDate" />
+    <label for="toDate">Slutdatum:</label>
+    <input type="date" name="toDate" id="toDate" />
+    <fieldset class="checkboxes">
+      <legend>Mätvärden:</legend>
+      <label for="flow">Flöde/Tappning</label>
+      <input type="checkbox" name="flow" id="flow" />
+      <label for="level">Nivå</label>
+      <input type="checkbox" name="level" id="level" />
+      <label for="levelDownstream">Nivå nedströms</label>
+      <input type="checkbox" name="levelDownstream" id="levelDownstream"/>
+      <label for="rainFall">Nederbörd</label>
+      <input type="checkbox" name="rainFall" id="rainFall" />
+    </fieldset>
+    <button type="submit">Visa värden</button>
+  </fieldset>
+  `;
+  toggleModal();
+}
+
+//  Toggling the modals
+function toggleModal() {
+  modal.classList.toggle('showModal');
+}
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+    toggleModal();
+  }
+}

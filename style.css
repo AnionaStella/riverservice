@@ -46,7 +46,7 @@ form {
   justify-content: space-around;
 }
 
-.modal {
+.modal { /* Fills the screen with grey shadow. Used for closing the modal when clicking outside of modalcontent */
   position: fixed;
   left: 0;
   top: 0;
