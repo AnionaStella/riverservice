@@ -63,12 +63,8 @@ function renderformName(measureSites) {
     select.appendChild(option);
   });
 }
-console.log(renderformName());
-// console-loggar info från formuläret
-let fromDate = document.getElementById("fromDate");
-console.log(fromDate.value);
-let toDate = document.getElementById("toDate");
-console.log(toDate.value);
+renderformName();
+
 
 // api-kall, idé för hämtning
 function getMeasureSiteInfo() {
@@ -81,7 +77,7 @@ function getMeasureSiteInfo() {
   });
 }
 
-let renderGetSite = function(info) {
+let renderGetSite = function (info) {
   // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
 };
 
@@ -90,6 +86,7 @@ function getFromDate(event) {
   fromDate = event.target.value;
   event.preventDefault();
 }
+
 function getToDate(event) {
   toDate = event.target.value;
   event.preventDefault();
