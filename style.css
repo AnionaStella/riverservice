@@ -206,4 +206,10 @@ header h1 {
     box-sizing: border-box;
     padding: 20px;
   }
+  .desktop {
+    display: inline;
+  }
+  .mobile {
+    display: none;
+  }
 }
