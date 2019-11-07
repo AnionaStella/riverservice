@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   try {
+
     fetch('http://data.goteborg.se/RiverService/v1.1/MeasureSites/b9098f14-4d94-49bd-8c7b-2c15ab9c370e?format=json')
       .then(async response => {
         let json = await response.json();
@@ -14,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('submit', expandSite); // Search and show results in modal
       window.addEventListener('click', windowOnClick); // Close modal when user clicks outside of modal
       })
+
   } catch (error) {
     console.error(error);
   }
-})
-
+});
 
 let renderMeasureSites = measureSites => {
   measureSites.forEach((measureSite, index) => {
@@ -26,10 +27,9 @@ let renderMeasureSites = measureSites => {
     let container = document.querySelector(".container");
     let siteCard = document.createElement("div");
     siteCard.className = "card";
-    siteCard.id = 's' + index;
+    siteCard.id = "s" + index;
     container.appendChild(siteCard);
-    
-    
+
     // create <p> and add name from array
     let siteNameParagraph = document.createElement("p");
     siteNameParagraph.className = "siteName";
@@ -88,7 +88,7 @@ function getMeasureSiteInfo() {
   });
 }
 
-let renderGetSite = function(info) {
+let renderGetSite = function (info) {
   // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
 };
 
@@ -122,9 +122,8 @@ function expandSite (event) {
 }
 
 // Creating the modals
-let modal = document.querySelector('.modal');
-let modalContent = document.querySelector('.modalContent');
-
+let modal = document.querySelector(".modal");
+let modalContent = document.querySelector(".modalContent");
 
 function createSiteModal(site) {
   modalContent.innerHTML = `
@@ -158,7 +157,7 @@ function createSiteModal(site) {
 
 //  Toggling the modals
 function toggleModal() {
-  modal.classList.toggle('showModal');
+  modal.classList.toggle("showModal");
 }
 
 function windowOnClick(event) {
@@ -166,3 +165,16 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
+
+
+//Start-idé för hur man ska hitta vilka checkboxes som ska synas
+function disableCheckbox(measureSites) {
+  measureSites.forEach(function (measureSite) {
+    if (measureSite.MeasureParameter.Code != checkbox.name) {
+      document.getElementsByName('checkbox').disabled = true;
+    } else {
+      document.getElementById('checkbox').disabled = false;
+    }
+  })
+}
+
