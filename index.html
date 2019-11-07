@@ -9,33 +9,41 @@
     <title>RiverService</title>
   </head>
 
-
-<body>
-  <header>
-    <h1>Riverservice</h1>
-    <form class="searchMeasureSites">
-      <fieldset>
-      <legend>Sökparametrar:</legend>
-        <label id="measureSites">Mätplats</label>
-        <select name="measureSites" id="measureSites">
-          <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
-        </select>
-        <label for="fromDate">Startdatum:</label>
-        <input type="date" name="fromDate" id="fromDate">
-        <label for="toDate">Slutdatum:</label>
-        <input type="date" name="toDate" id="toDate">
-        <fieldset class="checkboxes">
-          <legend>Mätvärden:</legend>
-          <label for="flow">Flöde/Tappning</label>
-          <input type="checkbox" name="flow" id="flow">
-          <label for="level">Nivå</label>
-          <input type="checkbox" name="level" id="level">
-          <label for="levelDownstream">Nivå nedströms</label>
-          <input type="checkbox" name="levelDownstream" id="levelDownstream">
-          <label for="rainFall">Nederbörd</label>
-          <input type="checkbox" name="rainFall" id="rainFall">
+  <body>
+    <header>
+      <h1>Riverservice</h1>
+      <form class="searchMeasureSites">
+        <fieldset>
+          <legend>Sökparametrar:</legend>
+          <label id="measureSites">Mätplats</label>
+          <select name="measureSites" id="selectId">
+            <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
+          </select>
+          <label for="fromDate">Startdatum:</label>
+          <input type="date" name="fromDate" id="fromDate" />
+          <label for="toDate">Slutdatum:</label>
+          <input type="date" name="toDate" id="toDate" />
+          <fieldset class="checkboxes">
+            <legend>Mätvärden:</legend>
+            <label for="flow">Flöde/Tappning</label>
+            <input type="checkbox" name="flow" id="flow" />
+            <label for="level">Nivå</label>
+            <input type="checkbox" name="level" id="level" />
+            <label for="levelDownstream">Nivå nedströms</label>
+            <input
+              type="checkbox"
+              name="levelDownstream"
+              id="levelDownstream"
+            />
+            <label for="rainFall">Nederbörd</label>
+            <input type="checkbox" name="rainFall" id="rainFall" />
+          </fieldset>
+          <button type="submit">Visa värden</button>
         </fieldset>
       </form>
+      <div class="header-rubrik">
+        Välj nedan för mer information om enskild mätstation
+      </div>
       <div class="text-header">
         <p>Mätstation</p>
         <p>Flöde/tappning(m3/s)</p>

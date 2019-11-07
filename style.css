@@ -24,12 +24,13 @@ form {
 .card {
   margin: 0 auto;
   background-color: #9dbebb;
-  width: 100%;
+  width: 95%;
   height: 40px;
   margin-bottom: 7px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 .card p {
   color: #031926;
@@ -72,3 +73,15 @@ form {
   opacity: 1;
   visibility: visible;
 }
+
+.header-rubrik {
+  text-align: center;
+  font-size: 18px;
+  color: #707070;
+  padding: 2rem;
+}
+
+.searchMeasureSites {
+  display: none;
+}
+
