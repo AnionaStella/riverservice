@@ -102,7 +102,22 @@ function getToDate(event) {
   event.preventDefault();
 }
 // Max value (to) should be yesterday
+// Gör en function som hämtar dagens datum, sätt maxValue för toDate till den avriabeln.
+let today = new Date;
+let dateNow = document.getElementById('toDate');
+dateNow.max = today.toLocaleDateString('sv-SE');
+dateNow.defaultValue = today.toLocaleDateString('sv-SE');
+console.log(dateNow);
+
 // Default from value is one month ago
+var fromDay = new Date(today);
+//Change it so that it is 30 days in the past.
+var pastDate = fromDay.getDate() - 30;
+fromDay.setDate(pastDate);
+let dateFrom = document.getElementById('fromDate');
+dateFrom.defaultValue = fromDay.toLocaleDateString('sv-SE');
+console.log(dateFrom);
+
 
 // Expand measure site when clicked
 function expandSite() {
@@ -111,11 +126,7 @@ function expandSite() {
     let id = parseInt(sId.replace("s", ""));
     let site = getSite(id);
     createSiteModal(site);
-
- 
-
   }
-
 }
 
 // Creating the modals
@@ -174,4 +185,3 @@ function disableCheckbox(measureSites) {
     }
   })
 }
-
