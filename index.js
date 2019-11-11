@@ -1,21 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
   try {
+    fetch(
+      "http://data.goteborg.se/RiverService/v1.1/MeasureSites/b9098f14-4d94-49bd-8c7b-2c15ab9c370e?format=json"
+    ).then(async response => {
+      let json = await response.json();
+      console.log(json);
+      renderMeasureSites(json);
+      renderformName(json);
+      // Get dates entered in search field
+      document
+        .getElementById("fromDate")
+        .addEventListener("input", getFromDate);
+      document.getElementById("toDate").addEventListener("input", getToDate);
 
-    fetch('http://data.goteborg.se/RiverService/v1.1/MeasureSites/b9098f14-4d94-49bd-8c7b-2c15ab9c370e?format=json')
-      .then(async response => {
-        let json = await response.json();
-        console.log(json);
-        renderMeasureSites(json);
-        renderformName(json);
-        // Get dates entered in search field
-        document.getElementById('fromDate').addEventListener('input', getFromDate);
-        document.getElementById('toDate').addEventListener('input', getToDate);
-      
-      document.querySelector('.container').addEventListener('click', expandSite); // Show modal with more site info on click
-      window.addEventListener('submit', expandSite); // Search and show results in modal
-      window.addEventListener('click', windowOnClick); // Close modal when user clicks outside of modal
-      })
-
+      document
+        .querySelector(".container")
+        .addEventListener("click", expandSite); // Show modal with more site info on click
+      window.addEventListener("submit", expandSite); // Search and show results in modal
+      window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
+    });
   } catch (error) {
     console.error(error);
   }
@@ -71,7 +74,7 @@ function renderformName(measureSites) {
   measureSites.forEach(item => {
     let option = document.createElement("option");
     option.innerHTML = `
-    ${item.Description}
+    <span data-id="${item.Code}">${item.Description}</span>
     `;
     select.appendChild(option);
   });
@@ -88,7 +91,7 @@ function getMeasureSiteInfo() {
   });
 }
 
-let renderGetSite = function (info) {
+let renderGetSite = function(info) {
   // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
 };
 
@@ -103,10 +106,10 @@ function getToDate(event) {
 }
 // Max value (to) should be yesterday
 // Gör en function som hämtar dagens datum, sätt maxValue för toDate till den avriabeln.
-let today = new Date;
-let dateNow = document.getElementById('toDate');
-dateNow.max = today.toLocaleDateString('sv-SE');
-dateNow.defaultValue = today.toLocaleDateString('sv-SE');
+let today = new Date();
+let dateNow = document.getElementById("toDate");
+dateNow.max = today.toLocaleDateString("sv-SE");
+dateNow.defaultValue = today.toLocaleDateString("sv-SE");
 console.log(dateNow);
 
 // Default from value is one month ago
@@ -114,8 +117,8 @@ var fromDay = new Date(today);
 //Change it so that it is 30 days in the past.
 var pastDate = fromDay.getDate() - 30;
 fromDay.setDate(pastDate);
-let dateFrom = document.getElementById('fromDate');
-dateFrom.defaultValue = fromDay.toLocaleDateString('sv-SE');
+let dateFrom = document.getElementById("fromDate");
+dateFrom.defaultValue = fromDay.toLocaleDateString("sv-SE");
 console.log(dateFrom);
 
 // Expand measure site when clicked
@@ -156,7 +159,7 @@ function createSiteModal(site) {
       <label for="rainFallModal">Nederbörd</label>
       <input type="checkbox" name="RainFall" id="rainFallModal" />
     </fieldset>
-    <button type="submit">Visa värden</button>
+    <button type="submit" class="showValue">Visa värden</button>
   </fieldset>
   `;
   toggleModal();
@@ -173,14 +176,13 @@ function windowOnClick(event) {
   }
 }
 
-
 //Start-idé för hur man ska hitta vilka checkboxes som ska synas
 function disableCheckbox(measureSites) {
-  measureSites.forEach(function (measureSite) {
+  measureSites.forEach(function(measureSite) {
     if (measureSite.MeasureParameter.Code != checkbox.name) {
-      document.getElementsByName('checkbox').disabled = true;
+      document.getElementsByName("checkbox").disabled = true;
     } else {
-      document.getElementById('checkbox').disabled = false;
+      document.getElementById("checkbox").disabled = false;
     }
-  })
+  });
 }
