@@ -19,6 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
         .querySelector(".container")
         .addEventListener("click", expandSite); // Show modal with more site info on click
       window.addEventListener("submit", expandSite); // Search and show results in modal
+      // Listen to search events in modal and get entered data
+      document.querySelector(".modalContent").addEventListener("click", () => {
+        document
+          .getElementById("fromDateModal")
+          .addEventListener("input", getFromDate);
+        document
+          .getElementById("toDateModal")
+          .addEventListener("input", getToDate);
+      });
       window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
     });
   } catch (error) {
@@ -63,8 +72,7 @@ let getMeasureParameter = (measureParameters, code) => {
     return parameter.CurrentValue;
   }
 };
-// Get input information from form
-
+// checkboxes
 let checkboxes = document.querySelectorAll(
   ".searchMeasureSites input[type=checkbox]"
 );
@@ -85,8 +93,19 @@ checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck));
 // Dates:
 let fromDate;
 let toDate;
+let measureSiteCode;
 
-// Sites:
+function getFromDate(event) {
+  fromDate = event.target.value;
+  event.preventDefault();
+}
+
+function getToDate(event) {
+  toDate = event.target.value;
+  event.preventDefault();
+}
+
+// Render measuresite names in form:
 function renderformName(measureSites) {
   let select = document.getElementById("selectId");
 
@@ -118,19 +137,13 @@ function getMeasureSiteInfo() {
   });
 }
 
+// Rendera info till modalfönster som öppnas när formulär fyllts i.
 let renderGetSite = function(info) {
-  // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
+  `
+
+  `;
 };
 
-function getFromDate(event) {
-  fromDate = event.target.value;
-  event.preventDefault();
-}
-
-function getToDate(event) {
-  toDate = event.target.value;
-  event.preventDefault();
-}
 // Max value (to) should be yesterday
 // Gör en function som hämtar dagens datum, sätt maxValue för toDate till den variabeln.
 let today = new Date();
@@ -148,19 +161,19 @@ let dateFrom = document.getElementById("fromDate");
 dateFrom.defaultValue = fromDay.toLocaleDateString("sv-SE");
 console.log(dateFrom);
 
-// Expand measure site when clicked
+// Expand measure site modal when card is clicked
 function expandSite(event) {
   if (event.target.className === "card") {
     let sId = event.target.id;
     let id = parseInt(sId.replace("s", ""));
-    // let site = getSite(id);
-    createSiteModal();
+    // let site = renderGetSite(id);
+    createSiteModal(id);
   }
   if (event.target.nodeName === "P") {
     let sId = event.target.parentElement.id;
     let id = parseInt(sId.replace("s", ""));
-    // let site = getSite(id);
-    createSiteModal();
+    // let site = renderGetSite(id);
+    createSiteModal(id);
   }
 }
 
@@ -168,15 +181,15 @@ function expandSite(event) {
 let modal = document.querySelector(".modal");
 let modalContent = document.querySelector(".modalContent");
 
-function createSiteModal(site) {
+function createSiteModal(id) {
   modalContent.innerHTML = `
   <form class="searchMeasureSitesModal">
   <fieldset>
     <legend>Sökparametrar:</legend>
-    <label id="measureSitesModal">Mätplats</label>
+    <!-- <label id="measureSitesModal">Mätplats</label>
     <select name="measureSites" id="selectIdModal">
 
-    </select>
+    </select> -->
     <label for="fromDateModal">Startdatum:</label>
     <input type="date" name="fromDate" id="fromDateModal" />
     <label for="toDateModal">Slutdatum:</label>
@@ -194,6 +207,8 @@ function createSiteModal(site) {
     </fieldset>
     <button type="submit">Visa värden</button>
   </fieldset>
+  </form>
+  <p>${renderGetSite()}</p>
   `;
   toggleModal();
 }
@@ -202,7 +217,6 @@ function createSiteModal(site) {
 function toggleModal() {
   modal.classList.toggle("showModal");
 }
-
 function windowOnClick(event) {
   if (event.target === modal) {
     toggleModal();
