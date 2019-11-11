@@ -43,18 +43,18 @@ let renderMeasureSites = measureSites => {
     // create <p> for  flow content
     let siteFlowParagraph = document.createElement("p");
     siteFlowParagraph.className = "flowValue";
-    let measureParameter = getMeasureParameter(
-      measureSite.MeasureParameters,
-      "Tapping" || "Flow"
-    );
+    let measureParameter = getMeasureParameter(measureSite.MeasureParameters, [
+      "Tapping",
+      "Flow"
+    ]);
     siteFlowParagraph.innerText = measureParameter;
     siteCard.appendChild(siteFlowParagraph);
   });
 };
 
 let getMeasureParameter = (measureParameters, code) => {
-  let result = measureParameters.filter(
-    measureParameter => measureParameter.Code == code
+  let result = measureParameters.filter(measureParameter =>
+    code.includes(measureParameter.Code)
   );
   let parameter = result[0];
   if (parameter == undefined) {
@@ -132,19 +132,19 @@ dateFrom.defaultValue = fromDay.toLocaleDateString("sv-SE");
 console.log(dateFrom);
 
 // Expand measure site when clicked
-function expandSite (event) {
-  if (event.target.className === 'card') {
+function expandSite(event) {
+  if (event.target.className === "card") {
     let sId = event.target.id;
-    let id = parseInt(sId.replace('s', ''));
+    let id = parseInt(sId.replace("s", ""));
     // let site = getSite(id);
-    createSiteModal();            
-  };
-  if (event.target.nodeName === 'P') {
+    createSiteModal();
+  }
+  if (event.target.nodeName === "P") {
     let sId = event.target.parentElement.id;
-    let id = parseInt(sId.replace('s', ''));
+    let id = parseInt(sId.replace("s", ""));
     // let site = getSite(id);
-    createSiteModal();            
-  };
+    createSiteModal();
+  }
 }
 
 // Creating the modals
