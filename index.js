@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("fromDate")
         .addEventListener("input", getFromDate);
       document.getElementById("toDate").addEventListener("input", getToDate);
-
+      document
+        .getElementById("selectId")
+        .addEventListener("input", getSelectId);
       document
         .querySelector(".container")
         .addEventListener("click", expandSite); // Show modal with more site info on click
@@ -73,17 +75,25 @@ function renderformName(measureSites) {
 
   measureSites.forEach(item => {
     let option = document.createElement("option");
+    option.setAttribute("value", `${item.Code}`);
     option.innerHTML = `
-    <span data-id="${item.Code}">${item.Description}</span>
+    <span>${item.Description}</span>
     `;
     select.appendChild(option);
   });
+}
+// hämtar code value på mätplatsen
+let selectId;
+function getSelectId(e) {
+  selectId = e.target.value;
+  e.preventDefault();
+  console.log(selectId);
 }
 
 // api-kall, idé för hämtning
 function getMeasureSiteInfo() {
   fetch(
-    `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${MeasureSite}/${MeasureParameter}/${fromDate}/${toDate}?format=json`
+    `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectId}/${MeasureParameter}/${fromDate}/${toDate}?format=json`
   ).then(async response => {
     let json = await response.json();
     console.log(json);
@@ -159,7 +169,7 @@ function createSiteModal(site) {
       <label for="rainFallModal">Nederbörd</label>
       <input type="checkbox" name="RainFall" id="rainFallModal" />
     </fieldset>
-    <button type="submit" class="showValue">Visa värden</button>
+    <button type="submit">Visa värden</button>
   </fieldset>
   `;
   toggleModal();
