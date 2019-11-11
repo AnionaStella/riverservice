@@ -48,18 +48,18 @@ let renderMeasureSites = measureSites => {
     // create <p> for  flow content
     let siteFlowParagraph = document.createElement("p");
     siteFlowParagraph.className = "flowValue";
-    let measureParameter = getMeasureParameter(
-      measureSite.MeasureParameters,
-      "Tapping" || "Flow"
-    );
+    let measureParameter = getMeasureParameter(measureSite.MeasureParameters, [
+      "Tapping",
+      "Flow"
+    ]);
     siteFlowParagraph.innerText = measureParameter;
     siteCard.appendChild(siteFlowParagraph);
   });
 };
 
 let getMeasureParameter = (measureParameters, code) => {
-  let result = measureParameters.filter(
-    measureParameter => measureParameter.Code == code
+  let result = measureParameters.filter(measureParameter =>
+    code.includes(measureParameter.Code)
   );
   let parameter = result[0];
   if (parameter == undefined) {
