@@ -73,8 +73,24 @@ let getMeasureParameter = (measureParameters, code) => {
     return parameter.CurrentValue;
   }
 };
+// checkboxes
+let checkboxes = document.querySelectorAll(
+  ".searchMeasureSites input[type=checkbox]"
+);
+let emptyArr = [];
+function handleCheck(e) {
+  if (e.target.checked) {
+    emptyArr.push(e.target.id);
+  } else {
+    let findId = emptyArr.find(id => {
+      console.log(id.Code === e.target.id);
+    });
+    emptyArr.splice(findId, 1);
+  }
+}
 
-// Get input information from form
+checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck));
+
 // Dates:
 let fromDate;
 let toDate;
@@ -89,6 +105,8 @@ function getToDate(event) {
   toDate = event.target.value;
   event.preventDefault();
 }
+<<<<<<< HEAD
+=======
 // hämtar code value på mätplatsen
 function getSelectId(e) {
   selectId = e.target.value;
@@ -99,6 +117,7 @@ function getClickedMeasureParameters(e) {
   clickedMeasureParameters = event.target.id;
   e.preventDefault;
 }
+>>>>>>> 25cf33b654f9555717ede479d4b62258bf5cb2e3
 
 // Render measuresite names in form:
 function renderFormName(measureSites) {
@@ -138,10 +157,10 @@ function getMeasureSiteInfo() {
 }
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
-let renderGetSite = function (info) {
+let renderGetSite = function(info) {
   `
 
-  `
+  `;
 };
 
 // Max value (to) should be yesterday
@@ -162,19 +181,19 @@ dateFrom.defaultValue = fromDay.toLocaleDateString("sv-SE");
 console.log(dateFrom);
 
 // Expand measure site modal when card is clicked
-function expandSite (event) {
-  if (event.target.className === 'card') {
+function expandSite(event) {
+  if (event.target.className === "card") {
     let sId = event.target.id;
-    let id = parseInt(sId.replace('s', ''));
+    let id = parseInt(sId.replace("s", ""));
     // let site = renderGetSite(id);
-    createSiteModal(id);            
-  };
-  if (event.target.nodeName === 'P') {
+    createSiteModal(id);
+  }
+  if (event.target.nodeName === "P") {
     let sId = event.target.parentElement.id;
-    let id = parseInt(sId.replace('s', ''));
+    let id = parseInt(sId.replace("s", ""));
     // let site = renderGetSite(id);
-    createSiteModal(id);            
-  };
+    createSiteModal(id);
+  }
 }
 
 // Creating the modals
