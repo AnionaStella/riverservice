@@ -17,6 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .querySelector(".container")
         .addEventListener("click", expandSite); // Show modal with more site info on click
       window.addEventListener("submit", expandSite); // Search and show results in modal
+      // Listen to search events in modal and get entered data
+      document.querySelector(".modalContent").addEventListener("click", () => {
+        document.getElementById("fromDateModal").addEventListener("input", getFromDate);
+        document.getElementById("toDateModal").addEventListener("input", getToDate);
+      });
       window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
     });
   } catch (error) {
@@ -105,15 +110,9 @@ function getMeasureSiteInfo() {
   });
 }
 
-<<<<<<< HEAD
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
 let renderGetSite = function (info) {
   `
-=======
-let renderGetSite = function(info) {
-  // Ska rendera info till modalfönster som öppnas när fomrulär fyllts i.
-};
->>>>>>> 85b53fc318f69f86357a5e152a94460fc036836a
 
   `
 };
