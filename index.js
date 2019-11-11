@@ -6,26 +6,31 @@ document.addEventListener("DOMContentLoaded", () => {
       let json = await response.json();
       console.log(json);
       renderMeasureSites(json);
-      renderformName(json);
-      // Get dates entered in search field
-      document
-        .getElementById("fromDate")
-        .addEventListener("input", getFromDate);
+      renderFormName(json);
+      
+      // Get data entered in search field
+      document.getElementById("fromDate").addEventListener("input", getFromDate);
       document.getElementById("toDate").addEventListener("input", getToDate);
-      document
-        .getElementById("selectId")
-        .addEventListener("input", getSelectId);
-      document
-        .querySelector(".container")
-        .addEventListener("click", expandSite); // Show modal with more site info on click
-      window.addEventListener("submit", expandSite); // Search and show results in modal
+      document.getElementById("selectId").addEventListener("input", getSelectId);
+
+      // Eventlistener to get checkbox values
+      // document.querySelector(".checkboxes").addEventListener(type, listener);
+
+
+      document.querySelector(".container").addEventListener("click", expandSite); // Show modal with more site info on click
+      document.querySelector(".container").addEventListener("click", () => {
+        renderFormNameModal(json);
+      }); // Render meausuresite names to select menu
+      // document.querySelector(".container").addEventListener("click", renderFormNameModal); // Render meausuresite names to select menu
+      document.addEventListener("submit", expandSite);
+      }); // Search and show results in modal
       // Listen to search events in modal and get entered data
       document.querySelector(".modalContent").addEventListener("click", () => {
         document.getElementById("fromDateModal").addEventListener("input", getFromDate);
         document.getElementById("toDateModal").addEventListener("input", getToDate);
+        document.getElementById("selectIdModal").addEventListener("input", getSelectId);
       });
       window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
-    });
   } catch (error) {
     console.error(error);
   }
@@ -73,23 +78,30 @@ let getMeasureParameter = (measureParameters, code) => {
 // Dates:
 let fromDate;
 let toDate;
-let measureSiteCode;
+let selectId;
+let clickedMeasureParameters = [];
 
 function getFromDate(event) {
   fromDate = event.target.value;
   event.preventDefault();
 }
-
 function getToDate(event) {
   toDate = event.target.value;
   event.preventDefault();
 }
-
-
-
+// hämtar code value på mätplatsen
+function getSelectId(e) {
+  selectId = e.target.value;
+  e.preventDefault;
+}
+// Gets the selected measureparameters
+function getClickedMeasureParameters(e) {
+  clickedMeasureParameters = event.target.id;
+  e.preventDefault;
+}
 
 // Render measuresite names in form:
-function renderformName(measureSites) {
+function renderFormName(measureSites) {
   let select = document.getElementById("selectId");
 
   measureSites.forEach(item => {
@@ -101,12 +113,17 @@ function renderformName(measureSites) {
     select.appendChild(option);
   });
 }
-// hämtar code value på mätplatsen
-let selectId;
-function getSelectId(e) {
-  selectId = e.target.value;
-  e.preventDefault();
-  console.log(selectId);
+function renderFormNameModal(measureSites) {
+  let selectModal = document.getElementById("selectIdModal");
+
+  measureSites.forEach(item => {
+    let option = document.createElement("option");
+    option.setAttribute("value", `${item.Code}`);
+    option.innerHTML = `
+    <span>${item.Description}</span>
+    `;
+    selectModal.appendChild(option);
+  });
 }
 
 // api-kall, idé för hämtning
@@ -169,10 +186,10 @@ function createSiteModal(id) {
   <form class="searchMeasureSitesModal">
   <fieldset>
     <legend>Sökparametrar:</legend>
-    <!-- <label id="measureSitesModal">Mätplats</label>
+    <label id="measureSitesModal">Mätplats</label>
     <select name="measureSites" id="selectIdModal">
 
-    </select> -->
+    </select>
     <label for="fromDateModal">Startdatum:</label>
     <input type="date" name="fromDate" id="fromDateModal" />
     <label for="toDateModal">Slutdatum:</label>
