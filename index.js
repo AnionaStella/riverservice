@@ -102,30 +102,23 @@ function getToDate(event) {
   event.preventDefault();
 }
 // Max value (to) should be yesterday
-// Gör en function som hämtar dagens datum, sätt maxValue för toDate till den avriabeln.
-let today = new Date;
-let dateNow = document.getElementById('toDate');
-dateNow.max = today.toLocaleDateString('sv-SE');
-dateNow.defaultValue = today.toLocaleDateString('sv-SE');
-console.log(dateNow);
-
 // Default from value is one month ago
-var fromDay = new Date(today);
-//Change it so that it is 30 days in the past.
-var pastDate = fromDay.getDate() - 30;
-fromDay.setDate(pastDate);
-let dateFrom = document.getElementById('fromDate');
-dateFrom.defaultValue = fromDay.toLocaleDateString('sv-SE');
-console.log(dateFrom);
+
 
 // Expand measure site when clicked
-function expandSite() {
-  if (event.target.nodeName === "DIV") {
-    let sId = event.target.parentNode.parentNode.id;
-    let id = parseInt(sId.replace("s", ""));
-    let site = getSite(id);
-    createSiteModal(site);
-  }
+function expandSite (event) {
+  if (event.target.className === 'card') {
+    let sId = event.target.id;
+    let id = parseInt(sId.replace('s', ''));
+    // let site = getSite(id);
+    createSiteModal();            
+  };
+  if (event.target.nodeName === 'P') {
+    let sId = event.target.parentElement.id;
+    let id = parseInt(sId.replace('s', ''));
+    // let site = getSite(id);
+    createSiteModal();            
+  };
 }
 
 // Creating the modals
@@ -184,3 +177,4 @@ function disableCheckbox(measureSites) {
     }
   })
 }
+
