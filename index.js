@@ -7,30 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(json);
       renderMeasureSites(json);
       renderFormName(json);
-      
-      // Get data entered in search field
-      document.getElementById("fromDate").addEventListener("input", getFromDate);
-      document.getElementById("toDate").addEventListener("input", getToDate);
-      document.getElementById("selectId").addEventListener("input", getSelectId);
-
-      // Eventlistener to get checkbox values
-      // document.querySelector(".checkboxes").addEventListener(type, listener);
-
 
       document.querySelector(".container").addEventListener("click", expandSite); // Show modal with more site info on click
-      document.querySelector(".container").addEventListener("click", () => {
-        renderFormNameModal(json);
-      }); // Render meausuresite names to select menu
-      // document.querySelector(".container").addEventListener("click", renderFormNameModal); // Render meausuresite names to select menu
-      document.addEventListener("submit", expandSite);
-      }); // Search and show results in modal
-      // Listen to search events in modal and get entered data
-      document.querySelector(".modalContent").addEventListener("click", () => {
-        document.getElementById("fromDateModal").addEventListener("input", getFromDate);
-        document.getElementById("toDateModal").addEventListener("input", getToDate);
-        document.getElementById("selectIdModal").addEventListener("input", getSelectId);
+      renderFormNameModal(json); // Render measuresite names to select menu
+
+      // Search and show results in modal
+      document.addEventListener("submit", () => {
+        event.preventDefault();
+        createSiteModal(event.target);
       });
-      window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
+    });
+
+    // Listen to search events in modal and get entered data
+    window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
   } catch (error) {
     console.error(error);
   }
@@ -42,7 +31,8 @@ let renderMeasureSites = measureSites => {
     let container = document.querySelector(".container");
     let siteCard = document.createElement("div");
     siteCard.className = "card";
-    siteCard.id = "s" + index;
+    siteCard.id = measureSite.Code;
+    // siteCard.id = "s" + index;
     container.appendChild(siteCard);
 
     // create <p> and add name from array
@@ -74,36 +64,10 @@ let getMeasureParameter = (measureParameters, code) => {
   }
 };
 
-// Get input information from form
-// Dates:
-let fromDate;
-let toDate;
-let selectId;
-let clickedMeasureParameters = [];
-
-function getFromDate(event) {
-  fromDate = event.target.value;
-  event.preventDefault();
-}
-function getToDate(event) {
-  toDate = event.target.value;
-  event.preventDefault();
-}
-// hämtar code value på mätplatsen
-function getSelectId(e) {
-  selectId = e.target.value;
-  e.preventDefault;
-}
-// Gets the selected measureparameters
-function getClickedMeasureParameters(e) {
-  clickedMeasureParameters = event.target.id;
-  e.preventDefault;
-}
 
 // Render measuresite names in form:
 function renderFormName(measureSites) {
   let select = document.getElementById("selectId");
-
   measureSites.forEach(item => {
     let option = document.createElement("option");
     option.setAttribute("value", `${item.Code}`);
@@ -115,7 +79,6 @@ function renderFormName(measureSites) {
 }
 function renderFormNameModal(measureSites) {
   let selectModal = document.getElementById("selectIdModal");
-
   measureSites.forEach(item => {
     let option = document.createElement("option");
     option.setAttribute("value", `${item.Code}`);
@@ -127,21 +90,24 @@ function renderFormNameModal(measureSites) {
 }
 
 // api-kall, idé för hämtning
-function getMeasureSiteInfo() {
-  fetch(
-    `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectId}/${MeasureParameter}/${fromDate}/${toDate}?format=json`
-  ).then(async response => {
-    let json = await response.json();
-    console.log(json);
-    renderGetSite(json);
-  });
+function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
+  document.getElementById("searchResults").innerText = ""
+  //TODO: Update modal selectors with fromDate, toDate, selectId
+  selectedParameters.forEach(selectedParameter => {
+    fetch(
+      `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectId}/${selectedParameter}/${fromDate}/${toDate}?format=json`
+    ).then(async response => {
+      let json = await response.json();
+      console.log(json);
+      renderGetSite(json);
+    });
+  })
+  
 }
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
-let renderGetSite = function (info) {
-  `
-
-  `
+let renderGetSite = function (jsonInfo) {
+  document.getElementById("searchResults").innerText += jsonInfo;
 };
 
 // Max value (to) should be yesterday
@@ -149,7 +115,8 @@ let renderGetSite = function (info) {
 let today = new Date();
 let dateNow = document.getElementById("toDate");
 dateNow.max = today.toLocaleDateString("sv-SE");
-dateNow.defaultValue = today.toLocaleDateString("sv-SE");
+let dateToString = today.toLocaleDateString("sv-SE");
+dateNow.defaultValue = dateToString;
 console.log(dateNow);
 
 // Default from value is one month ago
@@ -158,58 +125,37 @@ var fromDay = new Date(today);
 var pastDate = fromDay.getDate() - 30;
 fromDay.setDate(pastDate);
 let dateFrom = document.getElementById("fromDate");
-dateFrom.defaultValue = fromDay.toLocaleDateString("sv-SE");
+let dateFromString = fromDay.toLocaleDateString("sv-SE");
+dateFrom.defaultValue = dateFromString;
 console.log(dateFrom);
 
 // Expand measure site modal when card is clicked
+let id;
 function expandSite (event) {
+  let selectId  ;
   if (event.target.className === 'card') {
-    let sId = event.target.id;
-    let id = parseInt(sId.replace('s', ''));
-    // let site = renderGetSite(id);
-    createSiteModal(id);            
+    selectId = event.target.id;
+
+  } else if (event.target.nodeName === 'P') {
+    selectId = event.target.parentElement.id;
   };
-  if (event.target.nodeName === 'P') {
-    let sId = event.target.parentElement.id;
-    let id = parseInt(sId.replace('s', ''));
-    // let site = renderGetSite(id);
-    createSiteModal(id);            
-  };
+  getMeasureSiteInfo(selectId, dateFromString, dateToString, ["Level"]);
+  toggleModal();
 }
 
 // Creating the modals
 let modal = document.querySelector(".modal");
 let modalContent = document.querySelector(".modalContent");
 
-function createSiteModal(id) {
-  modalContent.innerHTML = `
-  <form class="searchMeasureSitesModal">
-  <fieldset>
-    <legend>Sökparametrar:</legend>
-    <label id="measureSitesModal">Mätplats</label>
-    <select name="measureSites" id="selectIdModal">
-
-    </select>
-    <label for="fromDateModal">Startdatum:</label>
-    <input type="date" name="fromDate" id="fromDateModal" />
-    <label for="toDateModal">Slutdatum:</label>
-    <input type="date" name="toDate" id="toDateModal" />
-    <fieldset class="checkboxesModal">
-      <legend>Mätvärden:</legend>
-      <label for="flowModal">Flöde/Tappning</label>
-      <input type="checkbox" name="Flow" id="flowModal" />
-      <label for="levelModal">Nivå</label>
-      <input type="checkbox" name="Level" id="levelModal" />
-      <label for="levelDownstreamModal">Nivå nedströms</label>
-      <input type="checkbox" name="LevelDownstream" id="levelDownstreamModal"/>
-      <label for="rainFallModal">Nederbörd</label>
-      <input type="checkbox" name="RainFall" id="rainFallModal" />
-    </fieldset>
-    <button type="submit">Visa värden</button>
-  </fieldset>
-  </form>
-  <p>${renderGetSite()}</p>
-  `;
+function createSiteModal(form) {
+  let selectId = form.querySelector("select[name='measureSites']").value;
+  let fromDate = form.querySelector("input[name='fromDate']").value;
+  let toDate = form.querySelector("input[name='toDate']").value;
+  let selectedParameterBoxes = form.querySelectorAll(".checkboxes input[type='checkbox']:checked");
+  console.log("Selected params", selectedParameterBoxes);
+  // TODO: figure out how to get names from checkboxes
+  let selectedParameters = selectedParameterBoxes.forEach(param => param.name);
+  getMeasureSiteInfo(selectId, fromDate, toDate, /*selectedParameters*/["Level"])
   toggleModal();
 }
 
