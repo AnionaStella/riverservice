@@ -63,7 +63,23 @@ let getMeasureParameter = (measureParameters, code) => {
     return parameter.CurrentValue;
   }
 };
+// checkboxes
+let checkboxes = document.querySelectorAll(
+  ".searchMeasureSites input[type=checkbox]"
+);
+let emptyArr = [];
+function handleCheck(e) {
+  if (e.target.checked) {
+    emptyArr.push(e.target.id);
+  } else {
+    let findId = emptyArr.find(id => {
+      console.log(id.Code === e.target.id);
+    });
+    emptyArr.splice(findId, 1);
+  }
+}
 
+checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck));
 
 // Render measuresite names in form:
 function renderFormName(measureSites) {
