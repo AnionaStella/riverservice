@@ -107,9 +107,9 @@ function renderFormNameModal(measureSites) {
   });
 }
 
-// api-kall, idé för hämtning
+// Get json data after search
 function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
-  document.getElementById("searchResults").innerText = ""
+  document.getElementById("searchResults").innerText = "";
   //TODO: Update modal selectors with fromDate, toDate, selectId
   selectedParameters.forEach(selectedParameter => {
     fetch(
@@ -133,10 +133,12 @@ let renderGetSite = function (jsonInfo) {
 let today = new Date();
 let dateNow = document.getElementById("toDate");
 dateNow.max = today.toLocaleDateString("sv-SE");
+
 let dateToString = today.toLocaleDateString("sv-SE");
 let datetoModal = document.getElementById("toDateModal")
 datetoModal.defaultValue = dateToString;
 dateNow.defaultValue = dateToString;
+
 console.log(dateNow);
 
 // Default from value is one month ago
@@ -145,11 +147,13 @@ var fromDay = new Date(today);
 var pastDate = fromDay.getDate() - 30;
 fromDay.setDate(pastDate);
 let dateFrom = document.getElementById("fromDate");
+
 let dateFromString = fromDay.toLocaleDateString("sv-SE");
 dateFrom.defaultValue = dateFromString;
 let datefromModal = document.getElementById("fromDateModal")
 datefromModal.defaultValue = dateFromString;
 console.log(datefromModal);
+
 console.log(dateFrom);
 
 // Expand measure site modal when card is clicked
@@ -163,7 +167,7 @@ function expandSite(event) {
   } else if (event.target.nodeName === 'P') {
     selectId = event.target.parentElement.id;
   };
-  getMeasureSiteInfo(selectId, dateFromString, dateToString, ["Level"]);
+  getMeasureSiteInfo(selectId, fromDateString, toDateString, ["Level"]);
   toggleModal();
 }
 
