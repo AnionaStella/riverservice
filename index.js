@@ -110,7 +110,6 @@ function renderFormNameModal(measureSites) {
 
 // Get json data after search
 function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
-  document.getElementById("searchResults").innerText = "";
   //TODO: Update modal selectors with fromDate, toDate, selectId
   selectedParameters.forEach(selectedParameter => {
     fetch(
@@ -125,7 +124,19 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
 let renderGetSite = function(jsonInfo) {
-  document.getElementById("searchResults").innerText += jsonInfo;
+  let table = document.querySelector(".tbody");
+  jsonInfo.forEach(item => {
+    console.log(item.Value);
+    let tr = document.createElement("tr");
+    tr.innerHTML = `
+        <td>${item.Value}</td>
+        <td>${item.TimeStamp}</td>
+        <td>-</td>
+        <td>-</td>
+      `;
+
+    table.appendChild(tr);
+  });
 };
 
 // Max value (to) should be yesterday
