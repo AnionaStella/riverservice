@@ -39,6 +39,15 @@ header h1 {
   text-align: center;
 }
 
+tr:nth-child(even) {
+  background-color: red;
+}
+tr:nth-child(odd) {
+  background-color: orange;
+}
+th {
+  background-color: yellow;
+}
 .header-rubrik {
   text-align: center;
   font-size: 18px;
