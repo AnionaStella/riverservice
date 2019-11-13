@@ -27,10 +27,10 @@
         <fieldset class="checkboxes">
           <legend>Mätvärden:</legend>
 
-          <input type="radio" name="measureParameter" id="flow" value="flowValueParameter" checked />
+          <input type="radio" name="measureParameter" id="flow" value="flowValueParameter" />
           <label for="flow">Flöde/Tappning</label>
 
-          <input type="radio" name="measureParameter" id="level" value="levelValueParameter" />
+          <input type="radio" name="measureParameter" id="level" value="levelValueParameter" checked />
           <label for="level">Nivå</label>
 
           <input type="radio" name="measureParameter" id="levelDownstream" value="levelDownValueParameter" />
@@ -44,7 +44,11 @@
       </fieldset>
     </form>
     <div class="header-rubrik">
-      Välj nedan för mer information om enskild mätstation
+      Välkommen till Riverservice!
+      <br>
+      Välj nedan för mer information om enskild mätstation.
+      <br>
+      På varje station finns tillgång till historisk data och andra sökparametrar.
     </div>
     <div class="text-header">
       <p>Mätstation</p>
@@ -67,9 +71,9 @@
             <fieldset class="checkboxesModal">
               <legend>Mätvärden:</legend>
               <label for="flowModal">Flöde/Tappning</label>
-              <input type="radio" name="measureParameter" id="Flow" checked />
+              <input type="radio" name="measureParameter" id="Flow" />
               <label for="levelModal">Nivå</label>
-              <input type="radio" name="measureParameter" id="Level" />
+              <input type="radio" name="measureParameter" id="Level" checked />
               <label for="levelDownstreamModal">Nivå nedströms</label>
               <input type="radio" name="measureParameter" id="LevelDownstream" />
               <label for="rainFallModal">Nederbörd</label>
@@ -85,10 +89,10 @@
           <table class="resultTable">
             <thead>
               <tr>
-                <th>Namn</th>
-                <th>Namn</th>
-                <th>Namn</th>
-                <th>Namn</th>
+                <th>Sökvärde</th>
+                <th>Datum</th>
+                <!-- <th>Namn</th>
+                <th>Namn</th> -->
               </tr>
             </thead>
             <tbody class="tbody"></tbody>

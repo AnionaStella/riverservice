@@ -158,10 +158,10 @@ let renderGetSite = function (jsonInfo) {
     tr.innerHTML = `
         <td>${item.Value}</td>
         <td>${timestampDate}</td>
-        <td>-</td>
-        <td>-</td>
+        
       `;
-
+    //<td>-</td>
+    //<td>-</td>
     table.appendChild(tr);
   });
 };
