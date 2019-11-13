@@ -62,7 +62,7 @@ let getMeasureParameter = (measureParameters, code) => {
   if (parameter == undefined) {
     return "inget värde";
   } else {
-    return parameter.CurrentValue;
+    return parameter.CurrentValue + " m³";
   }
 };
 // checkboxes
