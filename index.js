@@ -122,6 +122,7 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
 }
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
+
 let renderGetSite = function(jsonInfo) {
   let table = document.querySelector(".tbody");
   jsonInfo.forEach(item => {
@@ -198,7 +199,8 @@ function createSiteModal(form) {
     selectId,
     fromDate,
     toDate,
-    /*selectedParameters*/ ["Level"]
+    /*selectedParameters*/
+    ["Level"]
   );
   toggleModal();
 }
@@ -216,7 +218,7 @@ function windowOnClick(event) {
 
 //Start-idé för hur man ska hitta vilka checkboxes som ska synas
 function disableCheckbox(measureSites) {
-  measureSites.forEach(function(measureSite) {
+  measureSites.forEach(function (measureSite) {
     if (measureSite.MeasureParameter.Code != checkbox.name) {
       document.getElementsByName("checkbox").disabled = true;
     } else {
