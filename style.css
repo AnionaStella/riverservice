@@ -31,9 +31,7 @@ header h1 {
 .card p {
   width: 100%;
 }
-.resultTable {
-  width: 100%;
-}
+
 .tbody {
   width: 100%;
   text-align: center;
@@ -47,6 +45,11 @@ tr:nth-child(odd) {
 }
 th {
   background-color: yellow;
+  font-weight: bold;
+  padding: 7px;
+}
+.tr-space td {
+  padding: 5px;
 }
 .header-rubrik {
   text-align: center;
@@ -78,7 +81,7 @@ th {
   transform: translate(-50%, -50%);
   background-color: rgba(116, 177, 129, 0.952);
   color: rgb(63, 60, 60);
-  padding: 1rem 1.5rem;
+  padding: 1.5rem 1.5rem;
   width: 24rem;
   height: 70%;
   font-size: 14px;
@@ -110,8 +113,13 @@ th {
     color: rgb(63, 60, 60);
     padding: 1rem 1.5rem;
     overflow: scroll;
-    width: 80%;
+    width: 90%;
     border-radius: 0.5rem;
+  }
+  .resultTable {
+    width: 100%;
+
+    margin-top: 10px;
   }
   .card p {
     width: 100%;
@@ -151,6 +159,11 @@ th {
     background-color: #f4f4f4;
     font-weight: bold;
     font-size: 10px;
+  }
+  .resultTable {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
   }
   .container {
     display: grid;
@@ -204,6 +217,11 @@ th {
     background-color: #f4f4f4;
     font-weight: bold;
     font-size: 10px;
+  }
+  .resultTable {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
   }
   .container {
     display: grid;
