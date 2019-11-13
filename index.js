@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "http://data.goteborg.se/RiverService/v1.1/MeasureSites/b9098f14-4d94-49bd-8c7b-2c15ab9c370e?format=json"
     ).then(async response => {
       let json = await response.json();
-      console.log(json);
+      // console.log(json);
       renderMeasureSites(json);
       renderFormName(json);
 
@@ -28,15 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let renderMeasureSites = measureSites => {
-  measureSites.forEach((measureSite, index) => {
+  measureSites.forEach((measureSite) => {
     //create a cardDiv
     let container = document.querySelector(".container");
     let siteCard = document.createElement("div");
     siteCard.className = "card";
     siteCard.id = measureSite.Code;
-    // siteCard.id = "s" + index;
     container.appendChild(siteCard);
-
     // create <p> and add name from array
     let siteNameParagraph = document.createElement("p");
     siteNameParagraph.className = "siteName";
@@ -125,11 +123,11 @@ function renderFormNameModal(measureSites, selectedId) {
 }
 
 // Get json data after search
-function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
+function getMeasureSiteInfo(selectedId, fromDate, toDate, selectedParameters) {
   //TODO: Update modal selectors with fromDate, toDate, selectId
   selectedParameters.forEach(selectedParameter => {
     fetch(
-      `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectId}/${selectedParameter}/${fromDate}/${toDate}?format=json`
+      `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectedId}/${selectedParameter}/${fromDate}/${toDate}?format=json`
     ).then(async response => {
       let json = await response.json();
       renderGetSite(json);
@@ -142,13 +140,13 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
 let renderGetSite = function (jsonInfo) {
   let table = document.querySelector(".tbody");
   jsonInfo.forEach(item => {
-    console.log(item.Value);
+    // console.log(item.Value);
     let timeStamp = item.TimeStamp;
-    console.log(timeStamp);
+    // console.log(timeStamp);
     let timeTodate = timeStamp.substring(6, 24);
-    console.log(timeTodate);
+    // console.log(timeTodate);
     let timestampDate = new Date(parseInt(timeTodate)).toLocaleDateString("sv-SE");
-    console.log(timestampDate);
+    // console.log(timestampDate);
     let tr = document.createElement("tr");
     tr.classList.add("tr-space");
     tr.innerHTML = `
