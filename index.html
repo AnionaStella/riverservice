@@ -52,7 +52,36 @@
     <main>
       <div class="container"></div>
       <div class="modal">
-        <div class="modalContent"></div>
+        <div class="modalContent">
+          <form class="searchMeasureSitesModal">
+            <fieldset>
+              <legend>Sökparametrar:</legend>
+              <label id="measureSitesModal">Mätplats</label>
+              <select name="measureSites" id="selectIdModal">
+          
+              </select>
+              <label for="fromDateModal">Startdatum:</label>
+              <input type="date" name="fromDate" id="fromDateModal" />
+              <label for="toDateModal">Slutdatum:</label>
+              <input type="date" name="toDate" id="toDateModal" />
+              <fieldset class="checkboxesModal">
+                <legend>Mätvärden:</legend>
+                <label for="flowModal">Flöde/Tappning</label>
+                <input type="checkbox" name="Flow" id="flowModal" />
+                <label for="levelModal">Nivå</label>
+                <input type="checkbox" name="Level" id="levelModal" />
+                <label for="levelDownstreamModal">Nivå nedströms</label>
+                <input type="checkbox" name="LevelDownstream" id="levelDownstreamModal"/>
+                <label for="rainFallModal">Nederbörd</label>
+                <input type="checkbox" name="RainFall" id="rainFallModal" />
+              </fieldset>
+              <button type="submit">Visa värden</button>
+            </fieldset>
+          </form>
+          <div id="searchResults">
+
+          </div>
+        </div>
       </div>
     </main>
   </body>
