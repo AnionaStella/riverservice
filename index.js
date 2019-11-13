@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let json = await response.json();
       // console.log(json);
       renderMeasureSites(json);
-      renderFormName(json);
+      // renderFormName(json);
 
       // Show modal with more site info on click
       document.querySelector(".container").addEventListener("click", () => {
@@ -96,18 +96,18 @@ function expandSite(event, json, selectedId) {
   toggleModal();
 }
 
-// Render measuresite names in form:
-function renderFormName(measureSites) {
-  let select = document.getElementById("selectId");
-  measureSites.forEach(item => {
-    let option = document.createElement("option");
-    option.value = `${item.Code}`;
-    option.innerHTML = `
-    <span>${item.Description}</span>
-    `;
-    select.appendChild(option);
-  });
-}
+// // Render measuresite names in form:
+// function renderFormName(measureSites) {
+//   let select = document.getElementById("selectId");
+//   measureSites.forEach(item => {
+//     let option = document.createElement("option");
+//     option.value = `${item.Code}`;
+//     option.innerHTML = `
+//     <span>${item.Description}</span>
+//     `;
+//     select.appendChild(option);
+//   });
+// }
 
 function renderFormNameModal(measureSites, selectedId) {
   let selectModal = document.getElementById("selectIdModal");
