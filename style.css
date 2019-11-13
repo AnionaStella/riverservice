@@ -116,7 +116,7 @@ th {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(134, 108, 41, 0.25);
+    background-color: antiquewhite;
     color: rgb(63, 60, 60);
     padding: 1rem 1.5rem;
     overflow: scroll;
@@ -172,7 +172,20 @@ th {
     margin-bottom: 10px;
     margin-top: 10px;
   }
-
+  .modalContent {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    overflow: auto;
+    transform: translate(-50%, -50%);
+    background-color: antiquewhite;
+    color: rgb(63, 60, 60);
+    padding: 1.5rem 1.5rem;
+    width: 40rem;
+    height: 70%;
+    font-size: 14px;
+    border-radius: 0.5rem;
+  }
   .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
