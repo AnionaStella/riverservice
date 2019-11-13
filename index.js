@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Show modal with more site info on click
       document.querySelector(".container").addEventListener("click", () => {
-        expandSite(event, json, selectedId); 
+        expandSite(event, json, selectedId);
       });
 
       // Search and show results in modal
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Close modal when user clicks outside of modal
-    window.addEventListener("click", windowOnClick); 
+    window.addEventListener("click", windowOnClick);
   } catch (error) {
     console.error(error);
   }
@@ -87,11 +87,11 @@ let getMeasureParameter = (measureParameters, code) => {
 let selectedId;
 function expandSite(event, json, selectedId) {
   // let selectId;
-  if (event.target.className === 'card') {
+  if (event.target.className === "card") {
     selectedId = event.target.id;
-  } else if (event.target.nodeName === 'P') {
+  } else if (event.target.nodeName === "P") {
     selectedId = event.target.parentElement.id;
-  };
+  }
   renderFormNameModal(json, selectedId); // Render measuresite names to select menu
   getMeasureSiteInfo(selectedId, fromDateString, toDateString, ["Level"]);
   toggleModal();
@@ -139,15 +139,18 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
 
-let renderGetSite = function (jsonInfo) {
+let renderGetSite = function(jsonInfo) {
   let table = document.querySelector(".tbody");
+  table.innerHTML = "";
   jsonInfo.forEach(item => {
     console.log(item.Value);
     let timeStamp = item.TimeStamp;
     console.log(timeStamp);
     let timeTodate = timeStamp.substring(6, 24);
     console.log(timeTodate);
-    let timestampDate = new Date(parseInt(timeTodate)).toLocaleDateString("sv-SE");
+    let timestampDate = new Date(parseInt(timeTodate)).toLocaleDateString(
+      "sv-SE"
+    );
     console.log(timestampDate);
     let tr = document.createElement("tr");
     tr.classList.add("tr-space");
@@ -208,7 +211,6 @@ function createSiteModal(form) {
     /*selectedParameters*/
     ["Level"]
   );
-  toggleModal();
 }
 
 //  Toggling the modals
@@ -224,7 +226,7 @@ function windowOnClick(event) {
 
 //Start-idé för hur man ska hitta vilka checkboxes som ska synas
 function disableCheckbox(measureSites) {
-  measureSites.forEach(function (measureSite) {
+  measureSites.forEach(function(measureSite) {
     if (measureSite.MeasureParameter.Code != checkbox.name) {
       document.getElementsByName("checkbox").disabled = true;
     } else {

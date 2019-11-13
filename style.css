@@ -28,6 +28,11 @@ header h1 {
   align-items: center;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
+.card:hover {
+  background-color: #468189;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+}
 .card p {
   width: 100%;
 }
@@ -38,15 +43,17 @@ header h1 {
 }
 
 tr:nth-child(even) {
-  background-color: red;
+  background-color: #9dbebb;
 }
 tr:nth-child(odd) {
-  background-color: orange;
+  background-color: #f4f4f4;
 }
 th {
-  background-color: yellow;
+  background-color: #468189;
   font-weight: bold;
+  border-bottom: 1px solid #000000;
   padding: 7px;
+  color: #f4e9cd;
 }
 .tr-space td {
   padding: 5px;
@@ -79,7 +86,7 @@ th {
   left: 50%;
   overflow: auto;
   transform: translate(-50%, -50%);
-  background-color: rgba(116, 177, 129, 0.952);
+  background-color: rgba(134, 108, 41, 0.25);
   color: rgb(63, 60, 60);
   padding: 1.5rem 1.5rem;
   width: 24rem;
@@ -109,7 +116,7 @@ th {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(116, 177, 129, 0.952);
+    background-color: rgba(134, 108, 41, 0.25);
     color: rgb(63, 60, 60);
     padding: 1rem 1.5rem;
     overflow: scroll;
@@ -118,7 +125,7 @@ th {
   }
   .resultTable {
     width: 100%;
-
+    margin-bottom: 10px;
     margin-top: 10px;
   }
   .card p {
@@ -151,7 +158,7 @@ th {
 /* MEDIA QUERY IPAD*/
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .searchMeasureSites {
-    display: block;
+    display: none;
     text-align: center;
   }
   button {
@@ -162,9 +169,10 @@ th {
   }
   .resultTable {
     width: 100%;
-    margin: 0 auto;
+    margin-bottom: 10px;
     margin-top: 10px;
   }
+
   .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -209,7 +217,7 @@ th {
 /* MEDIA QUERY LAPTOP*/
 @media screen and (min-width: 1280px) {
   .searchMeasureSites {
-    display: block;
+    display: none;
     text-align: center;
   }
   button {
@@ -218,9 +226,24 @@ th {
     font-weight: bold;
     font-size: 10px;
   }
+  .modalContent {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    overflow: auto;
+    transform: translate(-50%, -50%);
+    background-color: antiquewhite;
+    color: rgb(63, 60, 60);
+    padding: 1.5rem 1.5rem;
+    width: 50rem;
+    height: 70%;
+    font-size: 14px;
+    border-radius: 0.5rem;
+  }
+
   .resultTable {
     width: 100%;
-    margin: 0 auto;
+    margin-bottom: 10px;
     margin-top: 10px;
   }
   .container {
