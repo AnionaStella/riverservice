@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
       renderMeasureSites(json);
       renderFormName(json);
 
-      document
-        .querySelector(".container")
-        .addEventListener("click", expandSite); // Show modal with more site info on click
-      renderFormNameModal(json); // Render measuresite names to select menu
+      // Show modal with more site info on click
+      document.querySelector(".container").addEventListener("click", () => {
+        expandSite(event, json, selectedId); 
+      });
 
       // Search and show results in modal
       document.addEventListener("submit", () => {
@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Listen to search events in modal and get entered data
-    window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
+    // Close modal when user clicks outside of modal
+    window.addEventListener("click", windowOnClick); 
   } catch (error) {
     console.error(error);
   }
@@ -83,6 +83,20 @@ let getMeasureParameter = (measureParameters, code) => {
 
 // checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck));
 
+// Expand measure site modal when card is clicked
+let selectedId;
+function expandSite(event, json, selectedId) {
+  // let selectId;
+  if (event.target.className === 'card') {
+    selectedId = event.target.id;
+  } else if (event.target.nodeName === 'P') {
+    selectedId = event.target.parentElement.id;
+  };
+  renderFormNameModal(json, selectedId); // Render measuresite names to select menu
+  getMeasureSiteInfo(selectedId, fromDateString, toDateString, ["Level"]);
+  toggleModal();
+}
+
 // Render measuresite names in form:
 function renderFormName(measureSites) {
   let select = document.getElementById("selectId");
@@ -95,12 +109,14 @@ function renderFormName(measureSites) {
     select.appendChild(option);
   });
 }
-
-function renderFormNameModal(measureSites) {
+function renderFormNameModal(measureSites, selectedId) {
   let selectModal = document.getElementById("selectIdModal");
   measureSites.forEach(item => {
     let option = document.createElement("option");
-    option.setAttribute("value", `${item.Code}`);
+    option.value = `${item.Code}`;
+    if (option.value == selectedId) {
+      option.selected = true;
+    }
     option.innerHTML = `
     <span>${item.Description}</span>
     `;
@@ -168,20 +184,6 @@ dateFromModal.defaultValue = dateFromString;
 console.log(dateFromModal);
 console.log(dateFrom);
 
-// Expand measure site modal when card is clicked
-let id;
-
-function expandSite(event) {
-  let selectId;
-  if (event.target.className === "card") {
-    selectId = event.target.id;
-  } else if (event.target.nodeName === "P") {
-    selectId = event.target.parentElement.id;
-  }
-  getMeasureSiteInfo(selectId, dateFromString, dateToString, ["Level"]);
-  toggleModal();
-}
-
 // Creating the modals
 let modal = document.querySelector(".modal");
 let modalContent = document.querySelector(".modalContent");
@@ -219,7 +221,7 @@ function windowOnClick(event) {
 
 //Start-idé för hur man ska hitta vilka checkboxes som ska synas
 function disableCheckbox(measureSites) {
-  measureSites.forEach(function(measureSite) {
+  measureSites.forEach(function (measureSite) {
     if (measureSite.MeasureParameter.Code != checkbox.name) {
       document.getElementsByName("checkbox").disabled = true;
     } else {
