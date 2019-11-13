@@ -116,7 +116,6 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
       `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectId}/${selectedParameter}/${fromDate}/${toDate}?format=json`
     ).then(async response => {
       let json = await response.json();
-      console.log(json);
       renderGetSite(json);
     });
   });
@@ -127,6 +126,9 @@ let renderGetSite = function(jsonInfo) {
   let table = document.querySelector(".tbody");
   jsonInfo.forEach(item => {
     console.log(item.Value);
+    let timeStamp = item.TimeStamp;
+
+    console.log(timeStamp);
     let tr = document.createElement("tr");
     tr.innerHTML = `
         <td>${item.Value}</td>
