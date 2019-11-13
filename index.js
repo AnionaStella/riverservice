@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Listen to search events in modal and get entered data
-    window.addEventListener("click", windowOnClick); // Close modal when user clicks outside of modal
+    // Close modal when user clicks outside of modal
+    window.addEventListener("click", windowOnClick); 
   } catch (error) {
     console.error(error);
   }
