@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
-    <title>RiverService</title>
-  </head>
 
-  <body>
-    <header>
-      <h1>Riverservice</h1>
-      <form class="searchMeasureSites" autocomplete="off">
-        <fieldset>
-          <legend>Sökparametrar:</legend>
-          <label id="measureSites">Mätplats</label>
-          <select name="measureSites" id="selectId">
-            <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
-          </select>
-          <label for="fromDate">Startdatum:</label>
-          <input type="date" name="fromDate" id="fromDate" />
-          <label for="toDate">Slutdatum:</label>
-          <input type="date" name="toDate" id="toDate" />
-          <fieldset class="checkboxes">
-            <legend>Mätvärden:</legend>
-            <label for="flow">Flöde/Tappning</label>
-            <input type="checkbox" name="flow" id="flow" checked/>
-            <label for="level">Nivå</label>
-            <input type="checkbox" name="level" id="level" />
-            <label for="levelDownstream">Nivå nedströms</label>
-            <input
-              type="checkbox"
-              name="levelDownstream"
-              id="levelDownstream"
-            />
-            <label for="rainFall">Nederbörd</label>
-            <input type="checkbox" name="rainFall" id="rainFall" />
-          </fieldset>
-          <button type="submit">Visa värden</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>RiverService</title>
+</head>
+
+<body>
+  <header>
+    <h1>Riverservice</h1>
+    <form class="searchMeasureSites" autocomplete="off">
+      <fieldset>
+        <legend>Sökparametrar:</legend>
+        <label id="measureSites">Mätplats</label>
+        <select name="measureSites" id="selectId">
+          <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
+        </select>
+        <label for="fromDate">Startdatum:</label>
+        <input type="date" name="fromDate" id="fromDate" />
+        <label for="toDate">Slutdatum:</label>
+        <input type="date" name="toDate" id="toDate" />
+        <fieldset class="checkboxes">
+          <legend>Mätvärden:</legend>
+
+          <input type="radio" name="flow" id="flow" value="flowValueParameter" />
+          <label for="flow">Flöde/Tappning</label>
+
+          <input type="radio" name="level" id="level" value="levelValueParameter" checked />
+          <label for="level">Nivå</label>
+
+          <input type="radio" name="levelDownstream" id="levelDownstream" value="levelDownValueParameter" />
+          <label for="levelDownstream">Nivå nedströms</label>
+
+          <input type="radio" name="rainFall" id="rainFall" value="rainfallValueParameter" />
+
+          <label for="rainFall">Nederbörd</label>
         </fieldset>
+<<<<<<< HEAD
       </form>
       <div class="header-rubrik">
         Välj nedan för mer information om enskild mätstation
@@ -76,14 +77,68 @@
                 <input type="checkbox" name="RainFall" id="rainFallModal" />
               </fieldset>
               <button type="submit">Visa värden</button>
+=======
+        <button type="submit">Visa värden</button>
+      </fieldset>
+    </form>
+    <div class="header-rubrik">
+      Välj nedan för mer information om enskild mätstation
+    </div>
+    <div class="text-header">
+      <p>Mätstation</p>
+      <p>Flöde/tappning(m3/s)</p>
+    </div>
+  </header>
+  <main>
+    <div class="container"></div>
+    <div class="modal">
+      <div class="modalContent">
+        <form class="searchMeasureSitesModal">
+          <fieldset>
+            <legend>Sökparametrar:</legend>
+            <label id="measureSitesModal">Mätplats</label>
+            <select name="measureSites" id="selectIdModal"> </select>
+            <label for="fromDateModal">Startdatum:</label>
+            <input type="date" name="fromDate" id="fromDateModal" />
+            <label for="toDateModal">Slutdatum:</label>
+            <input type="date" name="toDate" id="toDateModal" />
+            <fieldset class="checkboxesModal">
+              <legend>Mätvärden:</legend>
+              <label for="flowModal">Flöde/Tappning</label>
+              <input type="radio" name="Flow" id="flowModal" checked />
+              <label for="levelModal">Nivå</label>
+              <input type="radio" name="Level" id="levelModal" />
+              <label for="levelDownstreamModal">Nivå nedströms</label>
+              <input type="radio" name="LevelDownstream" id="levelDownstreamModal" />
+              <label for="rainFallModal">Nederbörd</label>
+              <input type="radio" name="RainFall" id="rainFallModal" />
+>>>>>>> a63c39a22d6129a99c12cf6ede2251610662163b
             </fieldset>
-          </form>
-          <div id="searchResults">
 
+            <button type="submit">Visa värden</button>
+          </fieldset>
+        </form>
+    
+        
+          <div id="searchResults">
+            <table class="resultTable">
+              <thead>
+                <tr>
+                  <th>Namn</th>
+                  <th>Namn</th>
+                  <th>Namn</th>
+                  <th>Namn</th>
+                </tr>
+              </thead>
+              <tbody class="tbody"></tbody>
+            </table>
           </div>
         </div>
+
       </div>
-    </main>
-  </body>
-  <script src="index.js"></script>
+    </div>
+  </main>
+</body>
+<script src="index.js"></script>
+
 </html>
