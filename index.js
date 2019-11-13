@@ -139,18 +139,21 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
 
-let renderGetSite = function(jsonInfo) {
+let renderGetSite = function (jsonInfo) {
   let table = document.querySelector(".tbody");
   jsonInfo.forEach(item => {
     console.log(item.Value);
     let timeStamp = item.TimeStamp;
-
     console.log(timeStamp);
+    let timeTodate = timeStamp.substring(6, 24);
+    console.log(timeTodate);
+    let timestampDate = new Date(parseInt(timeTodate)).toLocaleDateString("sv-SE");
+    console.log(timestampDate);
     let tr = document.createElement("tr");
     tr.classList.add("tr-space");
     tr.innerHTML = `
         <td>${item.Value}</td>
-        <td>${item.TimeStamp}</td>
+        <td>${timestampDate}</td>
         <td>-</td>
         <td>-</td>
       `;
