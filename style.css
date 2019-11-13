@@ -31,6 +31,13 @@ header h1 {
 .card p {
   width: 100%;
 }
+.resultTable {
+  width: 100%;
+}
+.tbody {
+  width: 100%;
+  text-align: center;
+}
 
 .header-rubrik {
   text-align: center;
@@ -75,6 +82,17 @@ header h1 {
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .searchMeasureSites {
     display: none;
+  }
+  .modalContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(116, 177, 129, 0.952);
+    color: rgb(63, 60, 60);
+    padding: 1rem 1.5rem;
+    width: 80%;
+    border-radius: 0.5rem;
   }
   .card p {
     width: 100%;
