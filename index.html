@@ -27,16 +27,16 @@
         <fieldset class="checkboxes">
           <legend>Mätvärden:</legend>
 
-          <input type="radio" name="flow" id="flow" value="flowValueParameter"  checked/>
+          <input type="radio" name="measureParameter" id="flow" value="flowValueParameter" checked />
           <label for="flow">Flöde/Tappning</label>
 
-          <input type="radio" name="level" id="level" value="levelValueParameter"/>
+          <input type="radio" name="measureParameter" id="level" value="levelValueParameter" />
           <label for="level">Nivå</label>
 
-          <input type="radio" name="levelDownstream" id="levelDownstream" value="levelDownValueParameter" />
+          <input type="radio" name="measureParameter" id="levelDownstream" value="levelDownValueParameter" />
           <label for="levelDownstream">Nivå nedströms</label>
 
-          <input type="radio" name="rainFall" id="rainFall" value="rainfallValueParameter" />
+          <input type="radio" name="measureParameter" id="rainFall" value="rainfallValueParameter" />
 
           <label for="rainFall">Nederbörd</label>
         </fieldset>
@@ -48,7 +48,7 @@
     </div>
     <div class="text-header">
       <p>Mätstation</p>
-      <p>Flöde/tappning(m3/s)</p>
+      <p>Flöde/tappning(m³/s)</p>
     </div>
   </header>
   <main>
@@ -67,36 +67,36 @@
             <fieldset class="checkboxesModal">
               <legend>Mätvärden:</legend>
               <label for="flowModal">Flöde/Tappning</label>
-              <input type="radio" name="Flow" id="flowModal" checked />
+              <input type="radio" name="measureParameter" id="Flow" checked />
               <label for="levelModal">Nivå</label>
-              <input type="radio" name="Level" id="levelModal" />
+              <input type="radio" name="measureParameter" id="Level" />
               <label for="levelDownstreamModal">Nivå nedströms</label>
-              <input type="radio" name="LevelDownstream" id="levelDownstreamModal" />
+              <input type="radio" name="measureParameter" id="LevelDownstream" />
               <label for="rainFallModal">Nederbörd</label>
-              <input type="radio" name="RainFall" id="rainFallModal" />
+              <input type="radio" name="measureParameter" id="RainFall" />
             </fieldset>
 
             <button type="submit">Visa värden</button>
           </fieldset>
         </form>
-    
-        
-          <div id="searchResults">
-            <table class="resultTable">
-              <thead>
-                <tr>
-                  <th>Namn</th>
-                  <th>Namn</th>
-                  <th>Namn</th>
-                  <th>Namn</th>
-                </tr>
-              </thead>
-              <tbody class="tbody"></tbody>
-            </table>
-          </div>
-        </div>
 
+
+        <div id="searchResults">
+          <table class="resultTable">
+            <thead>
+              <tr>
+                <th>Namn</th>
+                <th>Namn</th>
+                <th>Namn</th>
+                <th>Namn</th>
+              </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+          </table>
+        </div>
       </div>
+
+    </div>
     </div>
   </main>
 </body>
