@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
       renderMeasureSites(json);
       renderFormName(json);
 
-      document.querySelector(".container").addEventListener("click", expandSite); // Show modal with more site info on click
-      renderFormNameModal(json); // Render measuresite names to select menu
+      // Show modal with more site info on click
+      document.querySelector(".container").addEventListener("click", () => {
+        expandSite(event, json, selectedId); 
+      });
 
       // Search and show results in modal
       document.addEventListener("submit", () => {
@@ -81,6 +83,20 @@ function handleCheck(e) {
 
 checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck));
 
+// Expand measure site modal when card is clicked
+let selectedId;
+function expandSite(event, json, selectedId) {
+  // let selectId;
+  if (event.target.className === 'card') {
+    selectedId = event.target.id;
+  } else if (event.target.nodeName === 'P') {
+    selectedId = event.target.parentElement.id;
+  };
+  renderFormNameModal(json, selectedId); // Render measuresite names to select menu
+  getMeasureSiteInfo(selectedId, fromDateString, toDateString, ["Level"]);
+  toggleModal();
+}
+
 // Render measuresite names in form:
 function renderFormName(measureSites) {
   let select = document.getElementById("selectId");
@@ -93,11 +109,14 @@ function renderFormName(measureSites) {
     select.appendChild(option);
   });
 }
-function renderFormNameModal(measureSites) {
+function renderFormNameModal(measureSites, selectedId) {
   let selectModal = document.getElementById("selectIdModal");
   measureSites.forEach(item => {
     let option = document.createElement("option");
-    option.setAttribute("value", `${item.Code}`);
+    option.value = `${item.Code}`;
+    if (option.value == selectedId) {
+      option.selected = true;
+    }
     option.innerHTML = `
     <span>${item.Description}</span>
     `;
@@ -117,8 +136,7 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
       console.log(json);
       renderGetSite(json);
     });
-  })
-  
+  }) 
 }
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
@@ -145,19 +163,7 @@ let fromDateString = fromDay.toLocaleDateString("sv-SE");
 dateFrom.defaultValue = fromDateString;
 console.log(dateFrom);
 
-// Expand measure site modal when card is clicked
-let id;
-function expandSite (event) {
-  let selectId  ;
-  if (event.target.className === 'card') {
-    selectId = event.target.id;
 
-  } else if (event.target.nodeName === 'P') {
-    selectId = event.target.parentElement.id;
-  };
-  getMeasureSiteInfo(selectId, fromDateString, toDateString, ["Level"]);
-  toggleModal();
-}
 
 // Creating the modals
 let modal = document.querySelector(".modal");
