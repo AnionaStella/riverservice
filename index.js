@@ -95,6 +95,7 @@ function renderFormName(measureSites) {
     select.appendChild(option);
   });
 }
+
 function renderFormNameModal(measureSites) {
   let selectModal = document.getElementById("selectIdModal");
   measureSites.forEach(item => {
@@ -107,7 +108,7 @@ function renderFormNameModal(measureSites) {
   });
 }
 
-// api-kall, idé för hämtning
+// Get json data after search
 function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
   document.getElementById("searchResults").innerText = "";
   //TODO: Update modal selectors with fromDate, toDate, selectId
@@ -154,6 +155,7 @@ console.log(dateFrom);
 
 // Expand measure site modal when card is clicked
 let id;
+
 function expandSite(event) {
   let selectId;
   if (event.target.className === "card") {
@@ -178,10 +180,7 @@ function createSiteModal(form) {
   );
   console.log("Selected params", selectedParameterBoxes);
   // TODO: figure out how to get names from checkboxes
-  let selectedParameters = selectedParameterBoxes.forEach(param =>
-    console.log(param.id)
-  );
-  console.log(selectedParameters);
+  let selectedParameters = selectedParameterBoxes.forEach(param => param.name);
   getMeasureSiteInfo(
     selectId,
     fromDate,
@@ -195,6 +194,7 @@ function createSiteModal(form) {
 function toggleModal() {
   modal.classList.toggle("showModal");
 }
+
 function windowOnClick(event) {
   if (event.target === modal) {
     toggleModal();

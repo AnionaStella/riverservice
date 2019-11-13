@@ -12,7 +12,7 @@
   <body>
     <header>
       <h1>Riverservice</h1>
-      <form class="searchMeasureSites">
+      <form class="searchMeasureSites" autocomplete="off">
         <fieldset>
           <legend>Sökparametrar:</legend>
           <label id="measureSites">Mätplats</label>
@@ -28,8 +28,7 @@
 
             <input type="radio" name="flow" id="flow" />
             <label for="flow">Flöde/Tappning</label>
-
-            <input type="radio" name="level" id="level" />
+            <input type="checkbox" name="flow" id="flow" checked />
             <label for="level">Nivå</label>
 
             <input type="radio" name="levelDownstream" id="levelDownstream" />
@@ -66,7 +65,7 @@
               <fieldset class="checkboxesModal">
                 <legend>Mätvärden:</legend>
                 <label for="flowModal">Flöde/Tappning</label>
-                <input type="radio" name="Flow" id="flowModal" />
+                <input type="checkbox" name="Flow" id="flowModal" checked />
                 <label for="levelModal">Nivå</label>
                 <input type="radio" name="Level" id="levelModal" />
                 <label for="levelDownstreamModal">Nivå nedströms</label>
