@@ -122,6 +122,7 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
 }
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
+
 let renderGetSite = function(jsonInfo) {
   let table = document.querySelector(".tbody");
   jsonInfo.forEach(item => {
@@ -130,6 +131,7 @@ let renderGetSite = function(jsonInfo) {
 
     console.log(timeStamp);
     let tr = document.createElement("tr");
+    tr.classList.add("tr-space");
     tr.innerHTML = `
         <td>${item.Value}</td>
         <td>${item.TimeStamp}</td>
@@ -198,7 +200,8 @@ function createSiteModal(form) {
     selectId,
     fromDate,
     toDate,
-    /*selectedParameters*/ ["Level"]
+    /*selectedParameters*/
+    ["Level"]
   );
   toggleModal();
 }
