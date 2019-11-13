@@ -163,10 +163,10 @@ let renderGetSite = function(jsonInfo) {
 let today = new Date();
 let dateNow = document.getElementById("toDate");
 dateNow.max = today.toLocaleDateString("sv-SE");
-let dateToString = today.toLocaleDateString("sv-SE");
+let toDateString = today.toLocaleDateString("sv-SE");
 let dateToStringModal = document.getElementById("toDateModal");
-dateNow.defaultValue = dateToString;
-dateToStringModal.defaultValue = dateToString;
+dateNow.defaultValue = toDateString;
+dateToStringModal.defaultValue = toDateString;
 console.log(dateToStringModal);
 console.log(dateNow);
 
@@ -176,10 +176,10 @@ var fromDay = new Date(today);
 var pastDate = fromDay.getDate() - 30;
 fromDay.setDate(pastDate);
 let dateFrom = document.getElementById("fromDate");
-let dateFromString = fromDay.toLocaleDateString("sv-SE");
+let fromDateString = fromDay.toLocaleDateString("sv-SE");
 let dateFromModal = document.getElementById("fromDateModal");
-dateFrom.defaultValue = dateFromString;
-dateFromModal.defaultValue = dateFromString;
+dateFrom.defaultValue = fromDateString;
+dateFromModal.defaultValue = fromDateString;
 console.log(dateFromModal);
 console.log(dateFrom);
 
