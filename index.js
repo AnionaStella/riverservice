@@ -102,7 +102,7 @@ function renderFormName(measureSites) {
   let select = document.getElementById("selectId");
   measureSites.forEach(item => {
     let option = document.createElement("option");
-    option.setAttribute("value", `${item.Code}`);
+    option.value = `${item.Code}`;
     option.innerHTML = `
     <span>${item.Description}</span>
     `;
