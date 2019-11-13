@@ -85,6 +85,7 @@ let getMeasureParameter = (measureParameters, code) => {
 
 // Expand measure site modal when card is clicked
 let selectedId;
+
 function expandSite(event, json, selectedId) {
   // let selectId;
   if (event.target.className === "card") {
@@ -109,6 +110,7 @@ function renderFormName(measureSites) {
     select.appendChild(option);
   });
 }
+
 function renderFormNameModal(measureSites, selectedId) {
   let selectModal = document.getElementById("selectIdModal");
   measureSites.forEach(item => {
@@ -125,33 +127,32 @@ function renderFormNameModal(measureSites, selectedId) {
 }
 
 // Get json data after search
-function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameters) {
+function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameter) {
   //TODO: Update modal selectors with fromDate, toDate, selectId
-  selectedParameters.forEach(selectedParameter => {
-    fetch(
-      `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectId}/${selectedParameter}/${fromDate}/${toDate}?format=json`
-    ).then(async response => {
-      let json = await response.json();
-      renderGetSite(json);
-    });
+  console.log(selectId);
+  console.log(fromDate);
+  console.log(toDate);
+  console.log(selectedParameter);
+  fetch(
+    `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectId}/${selectedParameter}/${fromDate}/${toDate}?format=json`
+  ).then(async response => {
+    let json = await response.json();
+    renderGetSite(json);
   });
 }
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
 
-let renderGetSite = function(jsonInfo) {
+let renderGetSite = function (jsonInfo) {
   let table = document.querySelector(".tbody");
   table.innerHTML = "";
   jsonInfo.forEach(item => {
     console.log(item.Value);
     let timeStamp = item.TimeStamp;
-    console.log(timeStamp);
     let timeTodate = timeStamp.substring(6, 24);
-    console.log(timeTodate);
     let timestampDate = new Date(parseInt(timeTodate)).toLocaleDateString(
       "sv-SE"
     );
-    console.log(timestampDate);
     let tr = document.createElement("tr");
     tr.classList.add("tr-space");
     tr.innerHTML = `
@@ -198,18 +199,18 @@ function createSiteModal(form) {
   let selectId = form.querySelector("select[name='measureSites']").value;
   let fromDate = form.querySelector("input[name='fromDate']").value;
   let toDate = form.querySelector("input[name='toDate']").value;
-  let selectedParameterBoxes = form.querySelectorAll(
-    ".checkboxes input[type='checkbox']:checked"
-  );
-  console.log("Selected params", selectedParameterBoxes);
+  let selectedParameter = form.querySelector(
+    "input[type='radio']:checked"
+  ).id;
+  //.checkboxesModal
+  console.log("Selected params", selectedParameter);
   // TODO: figure out how to get names from checkboxes
-  let selectedParameters = selectedParameterBoxes.forEach(param => param.name);
+  // let selectedParameters = selectedParameterBoxes.forEach(param => param.name);
   getMeasureSiteInfo(
     selectId,
     fromDate,
     toDate,
-    /*selectedParameters*/
-    ["Level"]
+    selectedParameter
   );
 }
 
@@ -224,13 +225,13 @@ function windowOnClick(event) {
   }
 }
 
-//Start-idé för hur man ska hitta vilka checkboxes som ska synas
-function disableCheckbox(measureSites) {
-  measureSites.forEach(function(measureSite) {
-    if (measureSite.MeasureParameter.Code != checkbox.name) {
-      document.getElementsByName("checkbox").disabled = true;
-    } else {
-      document.getElementById("checkbox").disabled = false;
-    }
-  });
-}
+// //Start-idé för hur man ska hitta vilka checkboxes som ska synas
+// function disableCheckbox(measureSites) {
+//   measureSites.forEach(function (measureSite) {
+//     if (measureSite.MeasureParameter.Code != checkbox.name) {
+//       document.getElementsByName("checkbox").disabled = true;
+//     } else {
+//       document.getElementById("checkbox").disabled = false;
+//     }
+//   });
+// }
