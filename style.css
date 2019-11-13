@@ -31,6 +31,13 @@ header h1 {
 .card p {
   width: 100%;
 }
+.resultTable {
+  width: 100%;
+}
+.tbody {
+  width: 100%;
+  text-align: center;
+}
 
 .header-rubrik {
   text-align: center;
@@ -58,11 +65,14 @@ header h1 {
   position: absolute;
   top: 50%;
   left: 50%;
+  overflow: auto;
   transform: translate(-50%, -50%);
   background-color: rgba(116, 177, 129, 0.952);
   color: rgb(63, 60, 60);
   padding: 1rem 1.5rem;
   width: 24rem;
+  height: 70%;
+  font-size: 14px;
   border-radius: 0.5rem;
 }
 
@@ -75,6 +85,24 @@ header h1 {
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .searchMeasureSites {
     display: none;
+  }
+  button {
+    padding: 6px;
+    background-color: #f4f4f4;
+    font-weight: bold;
+    font-size: 10px;
+  }
+  .modalContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(116, 177, 129, 0.952);
+    color: rgb(63, 60, 60);
+    padding: 1rem 1.5rem;
+    overflow: scroll;
+    width: 80%;
+    border-radius: 0.5rem;
   }
   .card p {
     width: 100%;
@@ -110,9 +138,10 @@ header h1 {
     text-align: center;
   }
   button {
-    padding: 10px;
+    padding: 6px;
     background-color: #f4f4f4;
     font-weight: bold;
+    font-size: 10px;
   }
   .container {
     display: grid;
@@ -162,9 +191,10 @@ header h1 {
     text-align: center;
   }
   button {
-    padding: 10px;
+    padding: 6px;
     background-color: #f4f4f4;
     font-weight: bold;
+    font-size: 10px;
   }
   .container {
     display: grid;
