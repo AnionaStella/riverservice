@@ -147,6 +147,7 @@ let renderGetSite = function(jsonInfo) {
 
     console.log(timeStamp);
     let tr = document.createElement("tr");
+    tr.classList.add("tr-space");
     tr.innerHTML = `
         <td>${item.Value}</td>
         <td>${item.TimeStamp}</td>
