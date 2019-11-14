@@ -35,31 +35,33 @@
             <label id="measureSitesModal">Mätplats</label>
             <select name="measureSites" id="selectIdModal"> </select><br>
             <div class="flex-start">
-              <div class="flex-start-left">
-            <label for="fromDateModal" class="startDate">Startdatum:</label>
+                <div class="flex-start-left">
+            <label for="fromDateModal">Startdatum:</label>
             <input type="date" name="fromDate" id="fromDateModal" />
+        
           </div>
+          
           <div class="flex-start-right">
-            <label for="toDateModal" class="startDate">Slutdatum:</label>
+              <label for="toDateModal">Slutdatum:</label>
             <input type="date" name="toDate" id="toDateModal" />
           </div>
-          </div>
+        </div>
             <fieldset class="checkboxesModal">
               <legend>Mätvärden:</legend>
               <div class="flex">
-                <div class="flex-left">
+                  <div class="flex-left">
+              <input type="radio" name="measureParameter" id="Flow" checked />
               <label for="flowModal">Flöde/Tappning</label>
               <input type="radio" name="measureParameter" id="Level" />
               <label for="levelModal">Nivå</label>
-              <input type="radio" name="Level" id="levelModal" />
             </div>
             <div class="flex-right">
+              <input type="radio" name="measureParameter" id="LevelDownstream" />
               <label for="levelDownstreamModal">Nivå nedströms</label>
               <input type="radio" name="measureParameter" id="RainFall" />
               <label for="rainFallModal">Nederbörd</label>
-              <input type="radio" name="RainFall" id="rainFallModal" />
             </div>
-            </div>
+          </div>
             </fieldset>
           </fieldset>
         </form>

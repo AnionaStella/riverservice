@@ -105,7 +105,6 @@ th {
 
 /* MEDIA QUERY PHONE*/
 @media screen and (min-width: 320px) and (max-width: 767px) {
-<<<<<<< HEAD
   .searchMeasureSites {
     display: none;
   }
@@ -145,9 +144,6 @@ th {
     padding: 10px;
     font-weight: bold;
   }
-=======
-
->>>>>>> 6d7ca33796e910a565a11b8d40c5c23e7c8d7822
   button {
     padding: 6px;
     background-color: #f4f4f4;
@@ -206,7 +202,6 @@ th {
 
 /* MEDIA QUERY IPAD*/
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-<<<<<<< HEAD
   .searchMeasureSites {
     display: none;
     text-align: center;
@@ -222,11 +217,11 @@ th {
     margin-bottom: 10px;
   }
   .flex-left {
-    width: 22%;
+    width: 20%;
     text-align: left;
   }
   .flex-right {
-    width: 22%;
+    width: 20%;
     text-align: left;
   }
   input,
@@ -238,9 +233,6 @@ th {
     padding: 10px;
     font-weight: bold;
   }
-=======
-
->>>>>>> 6d7ca33796e910a565a11b8d40c5c23e7c8d7822
   button {
     padding: 6px;
     background-color: #f4f4f4;
@@ -316,7 +308,6 @@ th {
 
 /* MEDIA QUERY LAPTOP*/
 @media screen and (min-width: 1280px) {
-<<<<<<< HEAD
   .searchMeasureSites {
     display: none;
     text-align: center;
@@ -332,11 +323,11 @@ th {
     margin-bottom: 10px;
   }
   .flex-left {
-    width: 18%;
+    width: 16%;
     text-align: left;
   }
   .flex-right {
-    width: 18%;
+    width: 16%;
     text-align: left;
   }
   input,
@@ -348,9 +339,6 @@ th {
     padding: 10px;
     font-weight: bold;
   }
-=======
-
->>>>>>> 6d7ca33796e910a565a11b8d40c5c23e7c8d7822
   button {
     padding: 6px;
     background-color: #f4f4f4;
