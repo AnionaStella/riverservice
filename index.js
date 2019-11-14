@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 let measureSiteFlowType = {};
 
 let renderMeasureSites = measureSites => {
-  measureSites.forEach((measureSite) => {
+  measureSites.forEach(measureSite => {
     //create a cardDiv
     let container = document.querySelector(".container");
     let siteCard = document.createElement("div");
@@ -44,10 +44,11 @@ let renderMeasureSites = measureSites => {
     // create <p> for  flow content
     let siteFlowParagraph = document.createElement("p");
     siteFlowParagraph.className = "flowValue";
-    let measureParameter = getMeasureParameter(measureSite.Code, measureSite.MeasureParameters, [
-      "Tapping",
-      "Flow"
-    ]);
+    let measureParameter = getMeasureParameter(
+      measureSite.Code,
+      measureSite.MeasureParameters,
+      ["Tapping", "Flow"]
+    );
     siteFlowParagraph.innerText = measureParameter;
     siteCard.appendChild(siteFlowParagraph);
   });
@@ -76,8 +77,15 @@ function expandSite(event, json, selectedId) {
     selectedId = event.target.parentElement.id;
   }
   renderFormNameModal(json, selectedId); // Render measuresite names to select menu
-  let selectedParameter = document.querySelector(".checkboxesModal input[type='radio']:checked").id;
-  getMeasureSiteInfo(selectedId, fromDateString, toDateString, selectedParameter);
+  let selectedParameter = document.querySelector(
+    ".checkboxesModal input[type='radio']:checked"
+  ).id;
+  getMeasureSiteInfo(
+    selectedId,
+    fromDateString,
+    toDateString,
+    selectedParameter
+  );
   toggleModal();
 }
 
@@ -99,7 +107,10 @@ function renderFormNameModal(measureSites, selectedId) {
 
 // Get json data after search
 function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameter) {
-  if ((selectedParameter === "Flow") && (measureSiteFlowType[selectId] !== undefined)) {
+  if (
+    selectedParameter === "Flow" &&
+    measureSiteFlowType[selectId] !== undefined
+  ) {
     selectedParameter = measureSiteFlowType[selectId];
   }
   fetch(
@@ -112,7 +123,7 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameter) {
 }
 
 // Rendera info till modalfönster som öppnas när formulär fyllts i.
-let renderGetSite = function (jsonInfo) {
+let renderGetSite = function(jsonInfo) {
   let table = document.querySelector(".tbody");
   table.innerHTML = "";
   if (jsonInfo.length == 0) {
@@ -159,7 +170,9 @@ function createSiteModal(form) {
   let selectId = document.querySelector("#selectIdModal").value;
   let fromDate = document.querySelector("#fromDateModal").value;
   let toDate = document.querySelector("#toDateModal").value;
-  let selectedParameter = document.querySelector(".checkboxesModal input[type='radio']:checked").id;
+  let selectedParameter = document.querySelector(
+    ".checkboxesModal input[type='radio']:checked"
+  ).id;
 
   getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameter);
 }
