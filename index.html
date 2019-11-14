@@ -32,36 +32,36 @@
         <form class="searchMeasureSitesModal" autocomplete="off">
           <fieldset>
             <legend>Sökparametrar:</legend>
-           
+
             <label id="measureSitesModal">Mätplats</label>
             <select name="measureSites" id="selectIdModal"> </select>
             <div class="flex-start">
-                <div class="flex-start-left">
-            <label for="fromDateModal" class="start-end-block">Startdatum:</label>
-            <input type="date" name="fromDate" id="fromDateModal" />
+              <div class="flex-start-left">
+                <label for="fromDateModal" class="start-end-block">Startdatum:</label>
+                <input type="date" name="fromDate" id="fromDateModal" />
               </div>
-          <div class="flex-start-right">
-              <label for="toDateModal" class="start-end-block">Slutdatum:</label>
-            <input type="date" name="toDate" id="toDateModal">
-          </div>
-        
-      </div>
+              <div class="flex-start-right">
+                <label for="toDateModal" class="start-end-block">Slutdatum:</label>
+                <input type="date" name="toDate" id="toDateModal">
+              </div>
+
+            </div>
             <fieldset class="checkboxesModal">
               <legend>Mätvärden:</legend>
               <div class="flex">
                 <div class="flex-left">
-                    <label for="flowModal">Flöde/Tappning</label>
+                  <label for="flowModal">Flöde/Tappning</label>
                   <input type="radio" name="measureParameter" id="Flow" checked />
-                
+
                   <label for="levelModal">Nivå</label>
                   <input type="radio" name="measureParameter" id="Level" />
-                 
+
                 </div>
                 <div class="flex-right">
-                    <label for="levelDownstreamModal">Nivå nedströms</label>
+                  <label for="levelDownstreamModal">Nivå nedströms</label>
                   <input type="radio" name="measureParameter" id="LevelDownstream" />
-                 
-               
+
+
                   <label for="rainFallModal">Nederbörd</label>
                   <input type="radio" name="measureParameter" id="RainFall" />
                 </div>
@@ -85,7 +85,7 @@
     </div>
   </main>
   <div class="mapDiv">
-    <iframe class="map" width="768" height="576" src="https://maphub.net/embed/74202?legend=1&panel=1"
+    <iframe class="map" width="100%" height="300" src="https://maphub.net/embed/74202?button=0&panel=1"
       frameborder="0"></iframe>
   </div>
 </body>

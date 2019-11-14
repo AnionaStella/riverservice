@@ -16,6 +16,7 @@ body {
   display: flex;
   width: 80%;
   padding: 1rem;
+  height: 300px;
 }
 
 header h1 {
@@ -260,17 +261,21 @@ th {
   .flex-right {
     width: 21%;
   }
+
   /* Mätvärden sökparametrar*/
   .flex-start {
     width: 100%;
     display: flex;
   }
+
   .flex-start-left {
     width: 50%;
   }
+
   .flex-start-right {
     width: 50%;
   }
+
   .start-end-block {
     display: block;
   }
@@ -359,6 +364,11 @@ th {
     box-sizing: border-box;
     padding: 20px;
   }
+
+  /* Kartvy */
+  .map {
+    height: 576px;
+  }
 }
 
 /* MEDIA QUERY LAPTOP*/
@@ -372,7 +382,7 @@ th {
     text-align: center;
   }
 
-  /* Mätvärden fex */
+  /* Mätvärden flex */
   .flex {
     display: flex;
     width: 100%;
@@ -388,17 +398,21 @@ th {
   .flex-right {
     width: 17%;
   }
+
   /* Mätvärden sökparametrar*/
   .flex-start {
     width: 100%;
     display: flex;
   }
+
   .flex-start-left {
     width: 50%;
   }
+
   .flex-start-right {
     width: 50%;
   }
+
   .start-end-block {
     display: block;
   }
@@ -494,5 +508,10 @@ th {
 
   .mobile {
     display: none;
+  }
+
+  /* Kartvy */
+  .map {
+    height: 576px;
   }
 }
