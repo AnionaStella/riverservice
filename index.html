@@ -13,38 +13,12 @@
 <body>
   <header>
     <h1>Riverservice</h1>
-    <form class="searchMeasureSites" autocomplete="off">
-      <fieldset>
-        <legend>Sökparametrar:</legend>
-        <label id="measureSites">Mätplats</label>
-        <select name="measureSites" id="selectId">
-          <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
-        </select>
-        <label for="fromDate">Startdatum:</label>
-        <input type="date" name="fromDate" id="fromDate" />
-        <label for="toDate">Slutdatum:</label>
-        <input type="date" name="toDate" id="toDate" />
-        <fieldset class="checkboxes">
-          <legend>Mätvärden:</legend>
-
-          <input type="radio" name="flow" id="flow" value="flowValueParameter"  checked/>
-          <label for="flow">Flöde/Tappning</label>
-
-          <input type="radio" name="level" id="level" value="levelValueParameter"/>
-          <label for="level">Nivå</label>
-
-          <input type="radio" name="levelDownstream" id="levelDownstream" value="levelDownValueParameter" />
-          <label for="levelDownstream">Nivå nedströms</label>
-
-          <input type="radio" name="rainFall" id="rainFall" value="rainfallValueParameter" />
-
-          <label for="rainFall">Nederbörd</label>
-        </fieldset>
-        <button type="submit">Visa värden</button>
-      </fieldset>
-    </form>
     <div class="header-rubrik">
-      Välj nedan för mer information om enskild mätstation
+      Välkommen till Riverservice!
+      <br>
+      Välj nedan för mer information om enskild mätstation.
+      <br>
+      På varje station finns tillgång till historisk data och andra sökparametrar.
     </div>
     <div class="text-header">
       <p>Mätstation</p>
@@ -72,43 +46,47 @@
           </div>
             <fieldset class="checkboxesModal">
               <legend>Mätvärden:</legend>
+<<<<<<< HEAD
               <div class="flex">
                 <div class="flex-left">
+=======
+              <input type="radio" name="measureParameter" id="Flow" checked />
+>>>>>>> 6d7ca33796e910a565a11b8d40c5c23e7c8d7822
               <label for="flowModal">Flöde/Tappning</label>
-              <input type="radio" name="Flow" id="flowModal" checked />
+              <input type="radio" name="measureParameter" id="Level" />
               <label for="levelModal">Nivå</label>
+<<<<<<< HEAD
               <input type="radio" name="Level" id="levelModal" />
             </div>
             <div class="flex-right">
+=======
+              <input type="radio" name="measureParameter" id="LevelDownstream" />
+>>>>>>> 6d7ca33796e910a565a11b8d40c5c23e7c8d7822
               <label for="levelDownstreamModal">Nivå nedströms</label>
-              <input type="radio" name="LevelDownstream" id="levelDownstreamModal" />
+              <input type="radio" name="measureParameter" id="RainFall" />
               <label for="rainFallModal">Nederbörd</label>
+<<<<<<< HEAD
               <input type="radio" name="RainFall" id="rainFallModal" />
             </div>
             </div>
+=======
+>>>>>>> 6d7ca33796e910a565a11b8d40c5c23e7c8d7822
             </fieldset>
-
-            <button type="submit">Visa värden</button>
           </fieldset>
         </form>
-    
-        
-          <div id="searchResults">
-            <table class="resultTable">
-              <thead>
-                <tr>
-                  <th>Namn</th>
-                  <th>Namn</th>
-                  <th>Namn</th>
-                  <th>Namn</th>
-                </tr>
-              </thead>
-              <tbody class="tbody"></tbody>
-            </table>
-          </div>
+        <div id="searchResults">
+          <table class="resultTable">
+            <thead>
+              <tr>
+                <th>Sökvärde</th>
+                <th>Datum</th>
+              </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+          </table>
         </div>
-
       </div>
+    </div>
     </div>
   </main>
 </body>
