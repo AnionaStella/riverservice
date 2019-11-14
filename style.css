@@ -28,11 +28,13 @@ header h1 {
   align-items: center;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
+
 .card:hover {
   background-color: #468189;
   transition: all 0.5s ease-in;
   cursor: pointer;
 }
+
 .card p {
   width: 100%;
 }
@@ -45,9 +47,11 @@ header h1 {
 tr:nth-child(even) {
   background-color: #9dbebb;
 }
+
 tr:nth-child(odd) {
   background-color: #f4f4f4;
 }
+
 th {
   background-color: #468189;
   font-weight: bold;
@@ -55,18 +59,17 @@ th {
   padding: 7px;
   color: #f4e9cd;
 }
+
 .tr-space td {
   padding: 5px;
 }
+
 .header-rubrik {
   text-align: center;
   font-size: 18px;
   color: #707070;
   padding: 2rem;
-}
-
-.searchMeasureSites {
-  display: none;
+  line-height: 1.5em;
 }
 
 .modal {
@@ -102,37 +105,39 @@ th {
 
 /* MEDIA QUERY PHONE*/
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  .searchMeasureSites {
-    display: none;
-  }
+
   button {
     padding: 6px;
     background-color: #f4f4f4;
     font-weight: bold;
     font-size: 10px;
   }
+
   .modalContent {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(134, 108, 41, 0.25);
+    background-color: antiquewhite;
     color: rgb(63, 60, 60);
     padding: 1rem 1.5rem;
     overflow: scroll;
     width: 90%;
     border-radius: 0.5rem;
   }
+
   .resultTable {
     width: 100%;
     margin-bottom: 10px;
     margin-top: 10px;
   }
+
   .card p {
     width: 100%;
     padding-left: 10%;
     font-size: 1rem;
   }
+
   .text-header {
     display: flex;
     font-size: 14px;
@@ -151,26 +156,41 @@ th {
   .siteName {
     font-size: 1.5rem;
   }
+
   .flowValue {
     font-size: 1.5rem;
   }
 }
+
 /* MEDIA QUERY IPAD*/
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-  .searchMeasureSites {
-    display: none;
-    text-align: center;
-  }
+
   button {
     padding: 6px;
     background-color: #f4f4f4;
     font-weight: bold;
     font-size: 10px;
   }
+
   .resultTable {
     width: 100%;
     margin-bottom: 10px;
     margin-top: 10px;
+  }
+
+  .modalContent {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    overflow: auto;
+    transform: translate(-50%, -50%);
+    background-color: antiquewhite;
+    color: rgb(63, 60, 60);
+    padding: 1.5rem 1.5rem;
+    width: 40rem;
+    height: 70%;
+    font-size: 14px;
+    border-radius: 0.5rem;
   }
 
   .container {
@@ -181,6 +201,7 @@ th {
     width: 80%;
     margin: 0 auto;
   }
+
   .text-header {
     font-size: 1.2rem;
     color: #707070;
@@ -200,6 +221,7 @@ th {
     display: block;
     width: 100%;
   }
+
   .siteName {
     font-size: 1.3rem;
     box-sizing: border-box;
@@ -207,6 +229,7 @@ th {
     font-weight: bold;
     padding: 20px;
   }
+
   .flowValue {
     font-size: 1.3rem;
     text-align: center;
@@ -214,18 +237,17 @@ th {
     padding: 20px;
   }
 }
+
 /* MEDIA QUERY LAPTOP*/
 @media screen and (min-width: 1280px) {
-  .searchMeasureSites {
-    display: none;
-    text-align: center;
-  }
+
   button {
     padding: 6px;
     background-color: #f4f4f4;
     font-weight: bold;
     font-size: 10px;
   }
+
   .modalContent {
     position: absolute;
     top: 42%;
@@ -246,6 +268,7 @@ th {
     margin-bottom: 10px;
     margin-top: 10px;
   }
+
   .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -254,6 +277,7 @@ th {
     width: 80%;
     margin: 0 auto;
   }
+
   .text-header {
     font-size: 1.2rem;
     color: #707070;
@@ -273,6 +297,7 @@ th {
     display: block;
     width: 100%;
   }
+
   .siteName {
     font-size: 1.3rem;
     box-sizing: border-box;
@@ -280,15 +305,18 @@ th {
     font-weight: bold;
     padding: 20px;
   }
+
   .flowValue {
     font-size: 1.3rem;
     text-align: center;
     box-sizing: border-box;
     padding: 20px;
   }
+
   .desktop {
     display: inline;
   }
+
   .mobile {
     display: none;
   }
