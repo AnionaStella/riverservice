@@ -1,3 +1,4 @@
+var res;
 document.addEventListener("DOMContentLoaded", () => {
   try {
     fetch(
@@ -5,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ).then(async response => {
       let json = await response.json();
       renderMeasureSites(json);
+      console.log(json);
 
       // Show modal with more site info on click
       document.querySelector(".container").addEventListener("click", () => {
@@ -13,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Search and show results in modal
       document.querySelector('.searchMeasureSitesModal').addEventListener('input', () => {
-          createSiteModal(event.target);
-        });
+        createSiteModal(event.target);
+      });
     });
 
     // Close modal when user clicks outside of it
@@ -66,6 +68,7 @@ let getMeasureParameter = (measureSiteCode, measureParameters, code) => {
 
 // Expand measure site modal when card is clicked
 let selectedId;
+
 function expandSite(event, json, selectedId) {
   if (event.target.className === "card") {
     selectedId = event.target.id;
@@ -103,7 +106,7 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameter) {
     `http://data.goteborg.se/RiverService/v1.1/Measurements/b9098f14-4d94-49bd-8c7b-2c15ab9c370e/${selectId}/${selectedParameter}/${fromDate}/${toDate}?format=json`
   ).then(async response => {
     let json = await response.json();
-
+    res = json;
     renderGetSite(json);
   });
 }
@@ -112,6 +115,10 @@ function getMeasureSiteInfo(selectId, fromDate, toDate, selectedParameter) {
 let renderGetSite = function (jsonInfo) {
   let table = document.querySelector(".tbody");
   table.innerHTML = "";
+  if (jsonInfo.length == 0) {
+    table.innerHTML = `<p class="searchEmpty" >Mätvärdet finns ej för denna mätstation</p>`
+    console.log("Mätvärde finns ej")
+  }
   jsonInfo.forEach(item => {
     let timeStamp = item.TimeStamp;
     let timeTodate = timeStamp.substring(6, 24);
@@ -138,7 +145,7 @@ dateNow.defaultValue = toDateString;
 // Default from value is one month ago
 var fromDay = new Date(today);
 //Change it so that it is 30 days in the past.
-var pastDate = fromDay.getDate() - 30;
+var pastDate = fromDay.getDate() - 14;
 fromDay.setDate(pastDate);
 let dateFrom = document.getElementById("fromDateModal");
 let fromDateString = fromDay.toLocaleDateString("sv-SE");
@@ -167,14 +174,3 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
-
-// //Start-idé för hur man ska hitta vilka checkboxes som ska synas
-// function disableCheckbox(measureSites) {
-//   measureSites.forEach(function (measureSite) {
-//     if (measureSite.MeasureParameter.Code != checkbox.name) {
-//       document.getElementsByName("checkbox").disabled = true;
-//     } else {
-//       document.getElementById("checkbox").disabled = false;
-//     }
-//   });
-// }
