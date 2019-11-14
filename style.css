@@ -210,6 +210,7 @@ th {
   .searchMeasureSitesModal {
     text-align: center;
   }
+  /* Mätvärden fex */
   .flex {
     display: flex;
     width: 100%;
@@ -222,6 +223,7 @@ th {
   .flex-right {
     width: 21%;
   }
+  /* Mätvärden sökparametrar*/
   .flex-start {
     width: 100%;
     display: flex;
@@ -232,6 +234,10 @@ th {
   .flex-start-right {
     width: 50%;
   }
+  .start-end-block {
+    display: block;
+  }
+
   input,
   #selectIdModal {
     margin-bottom: 3px;
@@ -347,7 +353,9 @@ th {
   .flex-start-right {
     width: 50%;
   }
-
+  .start-end-block {
+    display: block;
+  }
   input,
   #selectIdModal {
     margin-bottom: 3px;
