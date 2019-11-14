@@ -173,6 +173,8 @@ th {
     font-size: 20px;
     padding: 10px;
     font-weight: bold;
+    text-align: center;
+    width: 100%;
   }
 
   button {
@@ -242,7 +244,7 @@ th {
     text-align: center;
   }
 
-  /* Mätvärden fex */
+  /* Mätvärden flex */
   .flex {
     display: flex;
     width: 100%;
@@ -282,6 +284,8 @@ th {
     font-size: 20px;
     padding: 10px;
     font-weight: bold;
+    text-align: center;
+    width: 100%;
   }
 
   button {
@@ -407,6 +411,8 @@ th {
   legend {
     font-size: 20px;
     padding: 10px;
+    text-align: center;
+    width: 100%;
     font-weight: bold;
   }
 
