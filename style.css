@@ -16,7 +16,6 @@ body {
   display: flex;
   width: 80%;
   padding: 1rem;
-
 }
 
 header h1 {
@@ -88,7 +87,6 @@ th {
 .searchEmpty {
   padding: 2rem;
   font-size: 18px;
-  ;
 }
 
 .modal {
@@ -131,10 +129,13 @@ th {
   .flex {
     display: flex;
     width: 100%;
+    justify-content: center;
+    text-align: left;
+    padding-left: 10%;
   }
 
   .flex-left {
-    width: 50%;
+    width: 40%;
   }
 
   .flex-right {
@@ -164,7 +165,8 @@ th {
   }
 
   label {
-    display: block;
+    display: inline;
+    text-align: left;
   }
 
   legend {
@@ -245,6 +247,8 @@ th {
     display: flex;
     width: 100%;
     justify-content: center;
+    text-align: left;
+    padding-left: 5%;
   }
 
   .flex-left {
@@ -369,6 +373,8 @@ th {
     display: flex;
     width: 100%;
     justify-content: center;
+    text-align: left;
+    padding-left: 2%;
   }
 
   .flex-left {
