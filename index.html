@@ -13,36 +13,6 @@
 <body>
   <header>
     <h1>Riverservice</h1>
-    <form class="searchMeasureSites" autocomplete="off">
-      <fieldset>
-        <legend>Sökparametrar:</legend>
-        <label id="measureSites">Mätplats</label>
-        <select name="measureSites" id="selectId">
-          <!-- <option value="Mätplatsens namn" id="Mätplatsens namn">Mätplatsens namn</option> -->
-        </select>
-        <label for="fromDate">Startdatum:</label>
-        <input type="date" name="fromDate" id="fromDate" />
-        <label for="toDate">Slutdatum:</label>
-        <input type="date" name="toDate" id="toDate" />
-        <fieldset class="checkboxes">
-          <legend>Mätvärden:</legend>
-
-          <input type="radio" name="measureParameter" id="flow" value="flowValueParameter" />
-          <label for="flow">Flöde/Tappning</label>
-
-          <input type="radio" name="measureParameter" id="level" value="levelValueParameter" checked />
-          <label for="level">Nivå</label>
-
-          <input type="radio" name="measureParameter" id="levelDownstream" value="levelDownValueParameter" />
-          <label for="levelDownstream">Nivå nedströms</label>
-
-          <input type="radio" name="measureParameter" id="rainFall" value="rainfallValueParameter" />
-
-          <label for="rainFall">Nederbörd</label>
-        </fieldset>
-        <button type="submit">Visa värden</button>
-      </fieldset>
-    </form>
     <div class="header-rubrik">
       Välkommen till Riverservice!
       <br>
@@ -70,36 +40,29 @@
             <input type="date" name="toDate" id="toDateModal" />
             <fieldset class="checkboxesModal">
               <legend>Mätvärden:</legend>
+              <input type="radio" name="measureParameter" id="Flow" checked />
               <label for="flowModal">Flöde/Tappning</label>
-              <input type="radio" name="measureParameter" id="Flow" />
+              <input type="radio" name="measureParameter" id="Level" />
               <label for="levelModal">Nivå</label>
-              <input type="radio" name="measureParameter" id="Level" checked />
-              <label for="levelDownstreamModal">Nivå nedströms</label>
               <input type="radio" name="measureParameter" id="LevelDownstream" />
-              <label for="rainFallModal">Nederbörd</label>
+              <label for="levelDownstreamModal">Nivå nedströms</label>
               <input type="radio" name="measureParameter" id="RainFall" />
+              <label for="rainFallModal">Nederbörd</label>
             </fieldset>
-
-            <button type="submit">Visa värden</button>
           </fieldset>
         </form>
-
-
         <div id="searchResults">
           <table class="resultTable">
             <thead>
               <tr>
                 <th>Sökvärde</th>
                 <th>Datum</th>
-                <!-- <th>Namn</th>
-                <th>Namn</th> -->
               </tr>
             </thead>
             <tbody class="tbody"></tbody>
           </table>
         </div>
       </div>
-
     </div>
     </div>
   </main>
